@@ -6,4 +6,4 @@ Moving dotfiles over to a new repository and doing a lot of cleanup. This is _ve
 - [ ] OhMyZSH
 - [ ] Tmux
 - [ ] Colors
-- [ ] git
+- [x] git
