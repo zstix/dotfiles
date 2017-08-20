@@ -3,7 +3,7 @@ Moving dotfiles over to a new repository and doing a lot of cleanup. This is _ve
 
 ### ToDo
 - [ ] Dotbot (or install scripts)
-- [ ] OhMyZSH
+- [x] OhMyZSH
 - [ ] Tmux
 - [ ] Colors
 - [x] git
