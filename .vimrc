@@ -62,11 +62,12 @@ set nohls
 "  [work in progress]
 " ----------
 
-" hi LineNr ctermfg=darkgray
-" hi PmenuSel ctermbg=white ctermfg=black
-" hi Pmenu ctermbg=black ctermfg=white
-" hi MatchParen ctermbg=black
-" hi VertSplit ctermfg=black ctermbg=black
-" hi StatusLineNC ctermbg=black
-" hi TabLineFill ctermfg=black
-" hi TabLine ctermbg=black
+hi LineNr ctermfg=DarkCyan
+hi PmenuSel ctermbg=white ctermfg=black
+hi Pmenu ctermbg=black ctermfg=white
+hi MatchParen ctermbg=black ctermfg=white
+hi VertSplit ctermfg=black ctermbg=black
+hi StatusLineNC ctermbg=white ctermfg=black
+hi StatusLine ctermfg=DarkCyan
+hi TabLineFill ctermfg=black
+hi TabLine ctermbg=black ctermfg=DarkCyan
