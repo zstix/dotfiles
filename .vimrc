@@ -21,6 +21,7 @@ set backspace=indent,eol,start
 set nostartofline
 set number
 set showmatch
+set cursorline
 syntax on
 
 set tabstop=2 " a tab is n spaces
@@ -72,3 +73,4 @@ hi StatusLine ctermfg=DarkCyan
 hi TabLineFill ctermfg=black
 hi TabLine ctermbg=black ctermfg=DarkCyan
 hi Search ctermbg=NONE ctermfg=white cterm=underline
+hi CursorLine cterm=NONE ctermbg=black
