@@ -54,7 +54,7 @@ set cmdheight=2 " also show the commands (extra line)
 set incsearch
 set ignorecase " case insensitive
 set smartcase " ^ unless specified
-set nohls
+set hlsearch " highlight all search terms
 
 " ----------
 "  Colors
@@ -71,3 +71,4 @@ hi StatusLineNC ctermbg=white ctermfg=black
 hi StatusLine ctermfg=DarkCyan
 hi TabLineFill ctermfg=black
 hi TabLine ctermbg=black ctermfg=DarkCyan
+hi Search ctermbg=NONE ctermfg=white cterm=underline
