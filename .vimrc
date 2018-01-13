@@ -57,20 +57,46 @@ set ignorecase " case insensitive
 set smartcase " ^ unless specified
 set hlsearch " highlight all search terms
 
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_winsize=25
+
+" ----------
+" Plugins
+" ----------
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'arcticicestudio/nord-vim'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled=1
+
+Plug 'edkolev/promptline.vim'
+let g:promptline_preset='clear'
+let g:promptline_powerline_symbols=0
+
+call plug#end()
+
 " ----------
 "  Colors
 "  Make the editor and program look pretty
 "  [work in progress]
 " ----------
 
-hi LineNr ctermfg=DarkCyan
-hi PmenuSel ctermbg=white ctermfg=black
-hi Pmenu ctermbg=black ctermfg=white
-hi MatchParen ctermbg=black ctermfg=white
-hi VertSplit ctermfg=black ctermbg=black
-hi StatusLineNC ctermbg=white ctermfg=black
-hi StatusLine ctermfg=DarkCyan
-hi TabLineFill ctermfg=black
-hi TabLine ctermbg=black ctermfg=DarkCyan
+colorscheme nord
+
+" hi LineNr ctermfg=DarkCyan
+" hi PmenuSel ctermbg=white ctermfg=black
+" hi Pmenu ctermbg=black ctermfg=white
+" hi MatchParen ctermbg=black ctermfg=white
+" hi VertSplit ctermfg=black ctermbg=black
+" hi StatusLineNC ctermbg=white ctermfg=black
+" hi StatusLine ctermfg=DarkCyan
+" hi TabLineFill ctermfg=black
+" hi TabLine ctermbg=black ctermfg=DarkCyan
 hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi CursorLine cterm=NONE ctermbg=black
