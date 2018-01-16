@@ -1,10 +1,12 @@
 [user]
-	name = Zack Stickles
-	email = zstickles@gmail.com
+  name = Zack Stickles
+  email = zstickles@gsandf.com
 [alias]
 	ci = commit
 	co = checkout
 	st = status
 	br = branch
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cr%C(reset) %C(white)%s%C(reset) %C(magenta)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  d = diff --name-only
 [credential]
 	helper = cache
