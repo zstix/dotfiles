@@ -1,9 +1,14 @@
 ## Dotfiles
-Moving dotfiles over to a new repository and doing a lot of cleanup. This is _very much_ a work in progress.
+This is _very much_ a work in progress.
 
-### ToDo
-- [ ] Dotbot (or install scripts)
-- [x] OhMyZSH
-- [x] Tmux
-- [x] Colors
-- [x] git
+### To Do
+- [ ] tmux (again)
+- [ ] vimrc (again)
+- [ ] Shell configuration
+- [ ] Git config
+
+### Extra
+- [ ] NPM / yarn config
+- [ ] vim plugins
+- [ ] tmux plugins
+- [ ] Install script(s)
