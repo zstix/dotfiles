@@ -3,7 +3,7 @@ This is _very much_ a work in progress.
 
 ### To Do
 - [x] tmux (again)
-- [ ] vimrc (again)
+- [x] vimrc (again)
 - [x] Shell configuration
 - [x] Git config
 
