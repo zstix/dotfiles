@@ -4,7 +4,7 @@ This is _very much_ a work in progress.
 ### To Do
 - [ ] tmux (again)
 - [ ] vimrc (again)
-- [ ] Shell configuration
+- [x] Shell configuration
 - [ ] Git config
 
 ### Extra

@@ -55,10 +55,13 @@ export CLICOLOR=YES
 # Aliases
 
 alias dir="ls -lah"
-alias search="grep -rn --color=always"
+alias fgrep="ls -a | grep"
+alias search="grep -rnI --color=always"
 
-# Linux-Specific Configuration
+# Load Device-Specific Configuration
 
-alias pbcopy="xclip -sel clip"
-
-# Mac-Specific Configuration
+local="$HOME/.local_bash_profile"
+if [ -f "$local" ]
+then
+	source "$local"
+fi
