@@ -5,7 +5,7 @@ This is _very much_ a work in progress.
 - [ ] tmux (again)
 - [ ] vimrc (again)
 - [x] Shell configuration
-- [ ] Git config
+- [x] Git config
 
 ### Extra
 - [ ] NPM / yarn config
