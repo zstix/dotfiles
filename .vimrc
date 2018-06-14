@@ -95,6 +95,15 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
+
+Plug 'mxw/vim-jsx'
+
+Plug 'Valloric/MatchTagAlways'
+let g:mta_filetypes = {
+  \ 'javascript.jsx': 1 }
+
 call plug#end()
 
 " ----------
