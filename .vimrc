@@ -104,6 +104,12 @@ Plug 'Valloric/MatchTagAlways'
 let g:mta_filetypes = {
   \ 'javascript.jsx': 1 }
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#whitespace#enabled=0
+let g:airline_theme='wombat'
+
 call plug#end()
 
 " ----------
