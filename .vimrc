@@ -1,14 +1,18 @@
 " Zack Stickles
 " 2018
 
+" ----------
 " System
+" ----------
 
 set nocompatible
 set path+=**
 set swapfile
 set dir=~/.tmp-swp
 
+" ----------
 " Program
+" ----------
 
 let mapleader=","
 
@@ -38,7 +42,9 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_winsize=25
 
+" ----------
 " Editor
+" ----------
 
 set autoindent
 set smartindent
@@ -58,7 +64,9 @@ set smarttab " insert right number of tabs at start of new line
 set smartcase " hitting tab will insert spaces
 set expandtab " inserts spaces
 
+" ----------
 " Functions
+" ----------
 
 function! CloseAllBuffersButCurrent()
   let curr = bufnr("%")
@@ -69,13 +77,31 @@ endfunction
 
 nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 
+" ----------
 " Plugins
+" ----------
 
-" TODO
+call plug#begin('~/.vim/plugged')
 
+Plug 'w0rp/ale'
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fix_on_save = 1
+
+Plug 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims=1
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'tpope/vim-fugitive'
+
+call plug#end()
+
+" ----------
 " Colors
+" ----------
 
-colorscheme ron " TODO
+colorscheme ron
 
 hi LineNr ctermfg=240
 hi Search ctermbg=NONE ctermfg=252 cterm=underline
