@@ -2,7 +2,7 @@
 This is _very much_ a work in progress.
 
 ### To Do
-- [ ] tmux (again)
+- [x] tmux (again)
 - [ ] vimrc (again)
 - [x] Shell configuration
 - [x] Git config
