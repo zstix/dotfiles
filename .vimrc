@@ -119,5 +119,6 @@ call plug#end()
 colorscheme ron
 
 hi LineNr ctermfg=240
-hi Search ctermbg=NONE ctermfg=252 cterm=underline
+hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi CursorLine cterm=NONE ctermbg=232
+hi VertSplit ctermbg=black ctermfg=black
