@@ -108,7 +108,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=0
-let g:airline_theme='wombat'
+let g:airline_theme='deus'
+
+Plug 'flazz/vim-colorschemes'
 
 call plug#end()
 
@@ -116,7 +118,7 @@ call plug#end()
 " Colors
 " ----------
 
-colorscheme ron
+colorscheme dracula
 
 hi LineNr ctermfg=240
 hi Search ctermbg=NONE ctermfg=white cterm=underline
