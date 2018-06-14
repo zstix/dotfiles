@@ -15,6 +15,6 @@ This is _very much_ a work in progress.
 
 ### Extra
 - [ ] NPM / yarn config
-- [ ] vim plugins
+- [x] vim plugins
 - [ ] tmux plugins
 - [ ] Install script(s)
