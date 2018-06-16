@@ -112,6 +112,8 @@ let g:airline_theme='deus'
 
 Plug 'flazz/vim-colorschemes'
 
+Plug 'easymotion/vim-easymotion'
+
 call plug#end()
 
 " ----------
