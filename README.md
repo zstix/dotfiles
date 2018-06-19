@@ -15,6 +15,6 @@ This is _very much_ a work in progress.
 - [x] Git config
 
 ### Extra
-- [ ] NPM / yarn config
+- [x] NPM / yarn config
 - [x] vim plugins
 - [ ] Install script(s)
