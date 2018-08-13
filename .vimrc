@@ -109,7 +109,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=0
-let g:airline_theme='bubblegum'
+let g:airline_theme='nord'
 
 Plug 'arcticicestudio/nord-vim'
 
@@ -123,6 +123,5 @@ call plug#end()
 
 colorscheme nord
 
-hi LineNr ctermfg=240
 hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=black ctermfg=black
