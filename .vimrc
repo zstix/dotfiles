@@ -109,9 +109,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=0
-let g:airline_theme='deus'
+let g:airline_theme='bubblegum'
 
-Plug 'flazz/vim-colorschemes'
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'easymotion/vim-easymotion'
 
@@ -121,9 +121,8 @@ call plug#end()
 " Colors
 " ----------
 
-colorscheme dracula
+colorscheme nord
 
 hi LineNr ctermfg=240
 hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi CursorLine cterm=NONE ctermbg=232
 hi VertSplit ctermbg=black ctermfg=black
