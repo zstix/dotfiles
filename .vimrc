@@ -18,8 +18,12 @@ let mapleader=","
 
 set history=50
 set hidden
+
 set wildmenu
 set wildignorecase
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
 set confirm
 set visualbell
 set t_vb= " reset the terminal code for visual bell
@@ -114,6 +118,12 @@ let g:airline_theme='nord'
 Plug 'arcticicestudio/nord-vim'
 
 Plug 'easymotion/vim-easymotion'
+
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 call plug#end()
 
