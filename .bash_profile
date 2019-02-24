@@ -76,3 +76,5 @@ if [ -f "$local" ]
 then
 	source "$local"
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
