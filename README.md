@@ -10,8 +10,7 @@ This is _very much_ a work in progress.
 
 ### To Do
 - [x] Neovim
-- [ ] Oni?
-- [ ] Fish?
+- [x] Oni?
 - [ ] Cleanup
 
 ### Extra

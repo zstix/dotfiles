@@ -69,6 +69,10 @@ alias dir="ls -lahF"
 alias fgrep="ls -a | grep"
 alias search="grep -rnI --color=always"
 
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="\vim"
+
 # Load Device-Specific Configuration
 
 local="$HOME/.local_bash_profile"
