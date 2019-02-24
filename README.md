@@ -9,12 +9,10 @@ This is _very much_ a work in progress.
 5. Create a directory for vim's swapfiles at `~/.nvim-tmp-swp`
 
 ### To Do
-- [x] tmux (again)
-- [x] vimrc (again)
-- [x] Shell configuration
-- [x] Git config
+- [x] Neovim
+- [ ] Oni?
+- [ ] Fish?
+- [ ] Cleanup
 
 ### Extra
-- [x] NPM / yarn config
-- [x] vim plugins
 - [ ] Install script(s)
