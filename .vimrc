@@ -1,3 +1,6 @@
+" NOTE: This is no longer in use and will be removed after
+" Neovim evaluation has been completed.
+
 " Zack Stickles
 " 2018
 
