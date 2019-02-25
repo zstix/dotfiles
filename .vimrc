@@ -1,3 +1,6 @@
+" NOTE: This is no longer in use and will be removed after
+" Neovim evaluation has been completed.
+
 " Zack Stickles
 " 2018
 
@@ -9,6 +12,9 @@ set nocompatible
 set path+=**
 set swapfile
 set dir=~/.tmp-swp
+
+set nobackup
+set nowritebackup
 
 " ----------
 " Program
@@ -124,6 +130,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
