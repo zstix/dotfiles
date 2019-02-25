@@ -6,3 +6,11 @@ function! CloseAllBuffersButCurrent()
 endfunction
 
 nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
+
+function! CreateNewTabShell()
+  terminal
+  startinsert
+  setlocal nonumber
+endfunction
+
+nmap <Leader>z :call CreateNewTabShell()<CR>source $HOME/.bash_profile<CR>clear<CR>

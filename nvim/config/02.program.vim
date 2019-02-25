@@ -30,6 +30,8 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_winsize=25
 
+tnoremap <Esc> <C-\><C-n>
+
 " Oni-specific settings
 if exists('g:gui_oni')
   set laststatus=1
