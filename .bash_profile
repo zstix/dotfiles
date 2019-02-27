@@ -66,7 +66,7 @@ shopt -s histappend
 # Aliases
 
 alias dir="ls -lahF"
-alias fgrep="ls -a | grep"
+alias fdir="ls -a | grep"
 alias search="grep -rnI --color=always"
 
 alias vim="nvim"

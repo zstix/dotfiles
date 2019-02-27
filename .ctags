@@ -1,0 +1,8 @@
+--recurse=yes
+--exclude=.git
+--exclude=vendor/*
+--exclude=node_module/*
+--exclude=db/*
+--exclude=log/*
+--exclude=images/*
+--exclude=icons/*

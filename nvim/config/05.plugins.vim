@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Valloric/MatchTagAlways'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'craigmery/vim-autotag'
 
 call plug#end()
 
@@ -49,3 +50,4 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+noremap <Leader>p :CtrlPTag<CR>
