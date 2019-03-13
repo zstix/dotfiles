@@ -31,7 +31,7 @@ let g:NERDSpaceDelims=1
 " ale
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0 " disable auto-fix
 hi ALEError ctermbg=black ctermfg=red
 
 " vim-javascript
@@ -50,4 +50,5 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
