@@ -36,8 +36,8 @@ hi ALEError ctermbg=black ctermfg=red
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
-" vim-airlin(-themes)
-let g:airline#extensions#tabline#enabled=1
+" vim-airline(-themes)
+let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#whitespace#enabled=0
 let g:airline_theme='nord'
 
