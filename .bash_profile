@@ -73,6 +73,9 @@ alias vim="nvim"
 alias vi="nvim"
 alias oldvim="\vim"
 
+alias emacs="emacs -nw"
+alias mutt="neomutt"
+
 # Load Device-Specific Configuration
 
 local="$HOME/.local_bash_profile"
