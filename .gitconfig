@@ -12,3 +12,5 @@
 	d = diff --name-only
 [credential]
 	helper = cache
+[core]
+  excludesfile = $HOME/.global_ignore
