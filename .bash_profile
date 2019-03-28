@@ -48,7 +48,7 @@ export PS1="\n\[\e[34m\][\[\e[m\]\[\e[34m\]\u\[\e[m\]\[\e[34m\]@\[\e[m\]\[\e[34m
 # Global Configuration
 
 export EDITOR="vim"
-set -o vi
+set -o emacs
 
 export CLICOLOR=YES
 
