@@ -35,7 +35,6 @@ set mouse=a
 set ruler
 set showcmd
 set showmode
-set laststatus=2 " always show the status line (filename)
 set cmdheight=2 " also show the commands (extra line)
 
 set incsearch
@@ -49,6 +48,18 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_winsize=25
 
+" statusline
+set laststatus=2
+set statusline=
+set statusline+=%f
+set statusline+=(%{&filetype})
+set statusline+=%m
+set statusline+=%=
+set statusline+=\ %n:
+set statusline+=\[%c
+set statusline+=:%l/
+set statusline+=%L]
+
 " ----------
 " Editor
 " ----------
@@ -57,7 +68,7 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 set nostartofline
-set number
+set nonumber
 set showmatch
 set cursorline
 syntax on
@@ -98,8 +109,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'Valloric/MatchTagAlways'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
@@ -125,11 +134,6 @@ let g:javascript_plugin_jsdoc = 1
 " MatchTagAlways
 let g:mta_filetypes = { 'javascript.jsx': 1 }
 
-" vim-airline(-themes)
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#whitespace#enabled=0
-let g:airline_theme='nord'
-
 " ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -147,3 +151,6 @@ colorscheme nord
 hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=none ctermfg=none
 set fillchars +=vert:\ 
+
+hi StatusLine ctermbg=black ctermfg=white
+hi StatusLineNC ctermbg=black ctermfg=gray
