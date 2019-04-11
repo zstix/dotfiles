@@ -69,10 +69,6 @@ alias dir="ls -lahF"
 alias fdir="ls -a | grep"
 alias search="grep -rnI --color=always"
 
-alias vim="nvim"
-alias vi="nvim"
-alias oldvim="\vim"
-
 alias emacs="emacs -nw"
 alias mutt="neomutt"
 
