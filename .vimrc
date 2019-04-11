@@ -1,8 +1,5 @@
-" NOTE: This is no longer in use and will be removed after
-" Neovim evaluation has been completed.
-
 " Zack Stickles
-" 2018
+" 2019
 
 " ----------
 " System
@@ -88,52 +85,58 @@ endfunction
 nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 
 " ----------
-" Plugins
+" Plugin Definitions
 " ----------
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'arcticicestudio/nord-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'Valloric/MatchTagAlways'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'leafgarland/typescript-vim'
+
+call plug#end()
+
+" ----------
+" Plugin Configuration
+" ----------
+
+" nerdcommenter
+let g:NERDSpaceDelims=1
+
+" ale
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
 let g:ale_fix_on_save = 1
 hi ALEError ctermbg=black ctermfg=red
 
-Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims=1
-
-Plug 'airblade/vim-gitgutter'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'pangloss/vim-javascript'
+" vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
-Plug 'mxw/vim-jsx'
+" MatchTagAlways
+let g:mta_filetypes = { 'javascript.jsx': 1 }
 
-Plug 'Valloric/MatchTagAlways'
-let g:mta_filetypes = {
-  \ 'javascript.jsx': 1 }
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" vim-airline(-themes)
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#whitespace#enabled=0
 let g:airline_theme='nord'
 
-Plug 'arcticicestudio/nord-vim'
-
-Plug 'easymotion/vim-easymotion'
-
-Plug 'ctrlpvim/ctrlp.vim'
+" ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
-Plug 'leafgarland/typescript-vim'
-
-call plug#end()
+let g:ctrlp_open_multiple_files = 'ij'
+noremap <Leader>p :CtrlPTag<CR>
 
 " ----------
 " Colors
@@ -142,4 +145,5 @@ call plug#end()
 colorscheme nord
 
 hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi VertSplit ctermbg=black ctermfg=black
+hi VertSplit ctermbg=none ctermfg=none
+set fillchars +=vert:\ 
