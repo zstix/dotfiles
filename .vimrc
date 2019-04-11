@@ -48,15 +48,24 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_winsize=25
 
+augroup CursorLine
+  au!
+  au VimEnter * setlocal cursorline
+  au WinEnter * setlocal cursorline
+  au BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 " statusline
 set laststatus=2
 set statusline=
-set statusline+=%f
+set statusline+=[%n]
+set statusline+=\ %f
 set statusline+=(%{&filetype})
 set statusline+=%m
 set statusline+=%=
-set statusline+=\ %n:
-set statusline+=\[%c
+set statusline+=%{fugitive#head()}
+set statusline+=\ [%c
 set statusline+=:%l/
 set statusline+=%L]
 
@@ -152,5 +161,5 @@ hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=none ctermfg=none
 set fillchars +=vert:\ 
 
-hi StatusLine ctermbg=black ctermfg=white
-hi StatusLineNC ctermbg=black ctermfg=gray
+hi StatusLine ctermbg=NONE ctermfg=white
+hi StatusLineNC ctermbg=NONE ctermfg=gray
