@@ -56,6 +56,8 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+inoremap <C-c> <Esc>
+
 " statusline
 set laststatus=2
 set statusline=
