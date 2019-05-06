@@ -163,5 +163,5 @@ hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=none ctermfg=none
 set fillchars +=vert:\ 
 
-hi StatusLine ctermbg=NONE ctermfg=white
+hi StatusLine ctermbg=black ctermfg=white
 hi StatusLineNC ctermbg=NONE ctermfg=gray
