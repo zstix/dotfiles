@@ -43,7 +43,26 @@ function parse_git_dirty {
 		echo ""
 	fi
 }
-export PS1="\n\[\e[34m\][\[\e[m\]\[\e[34m\]\u\[\e[m\]\[\e[34m\]@\[\e[m\]\[\e[34m\]\h\[\e[m\]\[\e[34m\]]\[\e[m\]\[\e[36m\][\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[36m\]]\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\\$ "
+
+# export PS1="\n\[\e[34m\][\[\e[m\]\[\e[34m\]\u\[\e[m\]\[\e[34m\]@\[\e[m\]\[\e[34m\]\h\[\e[m\]\[\e[34m\]]\[\e[m\]\[\e[36m\][\[\e[m\]\[\e[36m\]\w\[\e[m\]\[\e[36m\]]\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\\$ "
+
+RED="\[\e[0;31m\]"
+GRN="\[\e[0;32m\]"
+YLW="\[\e[0;33m\]"
+BLU="\[\e[0;34m\]"
+PRP="\[\e[0;35m\]"
+TEA="\[\e[0;36m\]"
+RST="\[\e[0m\]"
+
+# NOTE: this will need to be overwritten depending on OS
+MY_IP=$(ifconfig | grep "inet " | grep -v "127.0.0.1" | tail -n 1 | sed -E 's/.*inet (.*)  netmask.*/\1/')
+
+USR="$BLU\u$RST"
+CMP="$TEA@$MY_IP$RST"
+DIR="$GRN:\W$RST"
+GIT="$PRP\`parse_git_branch\`$RST"
+
+export PS1="$USR$CMP$DIR$GIT\$ "
 
 # Global Configuration
 
