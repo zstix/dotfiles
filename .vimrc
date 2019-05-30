@@ -113,6 +113,7 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -157,11 +158,19 @@ noremap <Leader>p :CtrlPTag<CR>
 " Colors
 " ----------
 
-colorscheme nord
+" colorscheme nord
+colorscheme dracula
 
-hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi VertSplit ctermbg=none ctermfg=none
 set fillchars +=vert:\ 
 
-hi StatusLine ctermbg=black ctermfg=white
-hi StatusLineNC ctermbg=NONE ctermfg=gray
+" Nord Colors
+" hi Search ctermbg=NONE ctermfg=white cterm=underline
+" hi VertSplit ctermbg=none ctermfg=none
+" hi StatusLine ctermbg=black ctermfg=white
+" hi StatusLineNC ctermbg=NONE ctermfg=gray
+
+" Dracula Colors
+hi Normal ctermbg=none
+hi StatusLine ctermbg=black
+hi StatusLineNC ctermbg=none
+hi CursorLine ctermbg=black
