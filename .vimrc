@@ -61,8 +61,7 @@ inoremap <C-c> <Esc>
 " statusline
 set laststatus=2
 set statusline=
-set statusline+=[%n]
-set statusline+=\ %f
+set statusline+=%f
 set statusline+=(%{&filetype})
 set statusline+=%m
 set statusline+=%=
@@ -124,6 +123,8 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'mhinz/vim-startify'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 call plug#end()
 
@@ -136,7 +137,7 @@ let g:NERDSpaceDelims=1
 
 " ale
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
 hi ALEError ctermbg=black ctermfg=red
 
@@ -154,23 +155,35 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
 
+" startify
+let g:startify_custom_header = [
+				\ '                               ',
+				\ '            __                 ',
+				\ '    __  __ /\_\    ___ ___     ',
+				\ '   /\ \/\ \\/\ \ /'' __` __`\  ',
+				\ '   \ \ \_/ |\ \ \/\ \/\ \/\ \  ',
+				\ '    \ \___/  \ \_\ \_\ \_\ \_\ ',
+				\ '     \/__/    \/_/\/_/\/_/\/_/ ',
+				\ ]
+let g:startify_change_to_dir=0
+
 " ----------
 " Colors
 " ----------
 
-" colorscheme nord
-colorscheme dracula
+colorscheme nord
+" colorscheme dracula
 
 set fillchars +=vert:\ 
 
 " Nord Colors
-" hi Search ctermbg=NONE ctermfg=white cterm=underline
-" hi VertSplit ctermbg=none ctermfg=none
-" hi StatusLine ctermbg=black ctermfg=white
-" hi StatusLineNC ctermbg=NONE ctermfg=gray
+hi Search ctermbg=NONE ctermfg=white cterm=underline
+hi VertSplit ctermbg=none ctermfg=none
+hi StatusLine ctermbg=black ctermfg=white
+hi StatusLineNC ctermbg=NONE ctermfg=gray
 
 " Dracula Colors
-hi Normal ctermbg=none
-hi StatusLine ctermbg=black
-hi StatusLineNC ctermbg=none
-hi CursorLine ctermbg=black
+" hi Normal ctermbg=none
+" hi StatusLine ctermbg=black
+" hi StatusLineNC ctermbg=none
+" hi CursorLine ctermbg=black
