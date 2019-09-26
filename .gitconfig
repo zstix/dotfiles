@@ -2,7 +2,7 @@
 	path = .local_gitconfig
 [user]
 	name = Zack Stickles
-	email = zstickles@gmail.com
+	email = zstickles@gsandf.com
 [alias]
 	ci = commit
 	co = checkout
@@ -14,3 +14,9 @@
 	helper = cache
 [core]
   excludesfile = $HOME/.global_ignore
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

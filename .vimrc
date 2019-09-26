@@ -78,7 +78,7 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 set nostartofline
-set nonumber
+set number
 set showmatch
 set cursorline
 syntax on
@@ -111,8 +111,6 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -125,6 +123,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mhinz/vim-startify'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -171,19 +171,12 @@ let g:startify_change_to_dir=0
 " Colors
 " ----------
 
-colorscheme nord
-" colorscheme dracula
+" set t_Co=256
+set termguicolors
+let ayucolor="dark"
+
+colorscheme ayu
 
 set fillchars +=vert:\ 
 
-" Nord Colors
-hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi VertSplit ctermbg=none ctermfg=none
-hi StatusLine ctermbg=black ctermfg=white
-hi StatusLineNC ctermbg=NONE ctermfg=gray
-
-" Dracula Colors
-" hi Normal ctermbg=none
-" hi StatusLine ctermbg=black
-" hi StatusLineNC ctermbg=none
-" hi CursorLine ctermbg=black
+hi Search guibg=#0F1419 guifg=#FFFFFF cterm=underline
