@@ -113,7 +113,6 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -158,9 +157,7 @@ noremap <Leader>p :CtrlPTag<CR>
 " Colors
 " ----------
 
-set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme nord
 
 hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=none ctermfg=none
