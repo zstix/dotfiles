@@ -1,2 +1,0 @@
-- [ ] link necessary things in ohmyzsh
-- [ ] new theme?

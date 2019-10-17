@@ -1,3 +1,0 @@
-chsh -s $(which zsh)
-brew install zsh-completions
-# notes - may need to add this to .zshrc fpath=(/usr/local/share/zsh-completions $fpath)
