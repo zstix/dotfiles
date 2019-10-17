@@ -2,3 +2,4 @@
 *.so
 *.DS_Store
 nvim/plugins/*
+.oh-my-zsh/
