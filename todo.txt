@@ -1,4 +1,4 @@
  - [x] setup zsh
- - [ ] zsh theme
- - [ ] zsh plugins?
+ - [/] zsh theme?
+ - [/] zsh plugins?
  - [ ] nvim
