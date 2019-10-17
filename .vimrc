@@ -58,19 +58,6 @@ augroup END
 
 inoremap <C-c> <Esc>
 
-" statusline
-set laststatus=2
-set statusline=
-set statusline+=[%n]
-set statusline+=\ %f
-set statusline+=(%{&filetype})
-set statusline+=%m
-set statusline+=%=
-set statusline+=%{fugitive#head()}
-set statusline+=\ [%c
-set statusline+=:%l/
-set statusline+=%L]
-
 " ----------
 " Editor
 " ----------
@@ -123,6 +110,9 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -153,6 +143,12 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
 
+" vim-airline
+let g:airline_powerline_fonts=1
+
+" nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
 " ----------
 " Colors
 " ----------
@@ -160,9 +156,8 @@ noremap <Leader>p :CtrlPTag<CR>
 colorscheme nord
 
 hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi VertSplit ctermbg=none ctermfg=none
-set fillchars +=vert:\ 
+hi VertSplit ctermbg=none ctermfg=8
+set fillchars+=vert:│
 
 hi StatusLine ctermbg=NONE ctermfg=white
 hi StatusLineNC ctermbg=NONE ctermfg=gray
-hi LineNr ctermfg=darkgray
