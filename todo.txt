@@ -1,0 +1,1 @@
+- [ ] link necessary things in ohmyzsh
