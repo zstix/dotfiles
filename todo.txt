@@ -1,4 +1,6 @@
- - [x] setup zsh
- - [/] zsh theme?
- - [/] zsh plugins?
- - [ ] nvim
+- [x] setup zsh
+- [/] zsh theme?
+- [/] zsh plugins?
+- [ ] nvim
+- [ ] tmux fix issues
+- [ ] tmux styles
