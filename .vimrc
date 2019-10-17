@@ -79,7 +79,7 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 set nostartofline
-set nonumber
+set number
 set showmatch
 set cursorline
 syntax on
@@ -113,6 +113,7 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 call plug#begin('~/.vim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
@@ -157,7 +158,9 @@ noremap <Leader>p :CtrlPTag<CR>
 " Colors
 " ----------
 
-colorscheme nord
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 
 hi Search ctermbg=NONE ctermfg=white cterm=underline
 hi VertSplit ctermbg=none ctermfg=none
@@ -165,3 +168,4 @@ set fillchars +=vert:\
 
 hi StatusLine ctermbg=NONE ctermfg=white
 hi StatusLineNC ctermbg=NONE ctermfg=gray
+hi LineNr ctermfg=darkgray
