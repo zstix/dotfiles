@@ -110,9 +110,18 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Valloric/ListToggle'
+
+" TODO: install and setup https://github.com/sirver/UltiSnips
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -125,9 +134,13 @@ let g:NERDSpaceDelims=1
 
 " ale
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['typescript'] = ['prettier', 'eslint']
 let g:ale_fix_on_save = 1
 hi ALEError ctermbg=black ctermfg=red
+
+let g:ale_linters = {}
+let g:ale_linters['typescript'] = ['eslint', 'tsserver']
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
@@ -149,6 +162,15 @@ let g:airline_powerline_fonts=1
 " nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
+" deoplete
+let g:deoplete#enable_at_startup=1
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" ListToggle
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
+
 " ----------
 " Colors
 " ----------
@@ -161,3 +183,5 @@ set fillchars+=vert:│
 
 hi StatusLine ctermbg=NONE ctermfg=white
 hi StatusLineNC ctermbg=NONE ctermfg=gray
+
+hi CursorLineNr cterm=none
