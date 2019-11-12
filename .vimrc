@@ -182,13 +182,4 @@ let g:javascript_plugin_jsdoc = 1
 
 colorscheme gruvbox
 
-" hi Search ctermbg=NONE ctermfg=white cterm=underline
-" hi VertSplit ctermbg=none ctermfg=8
-" set fillchars+=vert:│
-
-" hi StatusLine ctermbg=NONE ctermfg=white
-" hi StatusLineNC ctermbg=NONE ctermfg=gray
-
-" hi CursorLineNr cterm=none
-
-" hi Comment ctermfg=gray
+hi Search ctermbg=NONE ctermfg=white cterm=underline
