@@ -37,7 +37,7 @@ set mouse=a
 set ruler
 set showcmd
 set showmode
-set cmdheight=2 " also show the commands (extra line)
+set cmdheight=2
 
 set incsearch
 set ignorecase
@@ -76,11 +76,11 @@ syntax on
 set noeol
 set binary
 
-set tabstop=2 " a tab is n spaces
-set shiftwidth=2 " auto indent uses n spaces
-set smarttab " insert right number of tabs at start of new line
-set smartcase " hitting tab will insert spaces
-set expandtab " inserts spaces
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set smartcase
+set expandtab
 
 " ----------
 " Functions
