@@ -13,6 +13,8 @@ set dir=~/.tmp-swp
 set nobackup
 set nowritebackup
 
+set encoding=UTF-8
+
 " ----------
 " Program
 " ----------
@@ -114,10 +116,16 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
+
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Valloric/ListToggle'
+Plug 'morhetz/gruvbox'
+Plug 'mhinz/vim-startify'
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " TODO: install and setup https://github.com/sirver/UltiSnips
 " Plug 'SirVer/ultisnips'
@@ -171,17 +179,22 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 
+" Sartify
+let g:startify_custom_header = ['New Relic', 'Zack Stickles']
+
 " ----------
 " Colors
 " ----------
 
-colorscheme nord
+colorscheme gruvbox
 
-hi Search ctermbg=NONE ctermfg=white cterm=underline
-hi VertSplit ctermbg=none ctermfg=8
-set fillchars+=vert:│
+" hi Search ctermbg=NONE ctermfg=white cterm=underline
+" hi VertSplit ctermbg=none ctermfg=8
+" set fillchars+=vert:│
 
-hi StatusLine ctermbg=NONE ctermfg=white
-hi StatusLineNC ctermbg=NONE ctermfg=gray
+" hi StatusLine ctermbg=NONE ctermfg=white
+" hi StatusLineNC ctermbg=NONE ctermfg=gray
 
-hi CursorLineNr cterm=none
+" hi CursorLineNr cterm=none
+
+" hi Comment ctermfg=gray
