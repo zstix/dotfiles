@@ -112,8 +112,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/ListToggle'
-Plug 'mhinz/vim-startify'
 
 " Code Uniformity
 Plug 'w0rp/ale'
@@ -154,9 +152,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
 map <C-n> :NERDTreeToggle<CR>
-let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
-let g:startify_custom_header = ['New Relic', 'Zack Stickles']
 
 " Code Uniformity
 let g:NERDSpaceDelims=1
