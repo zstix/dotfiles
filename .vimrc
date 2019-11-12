@@ -101,35 +101,41 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'arcticicestudio/nord-vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'Valloric/MatchTagAlways'
-Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+" Display
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
-
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Valloric/ListToggle'
 Plug 'morhetz/gruvbox'
+
+" Application
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Valloric/ListToggle'
 Plug 'mhinz/vim-startify'
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Code Uniformity
+Plug 'w0rp/ale'
+Plug 'Valloric/MatchTagAlways'
+Plug 'scrooloose/nerdcommenter'
 
-" TODO: install and setup https://github.com/sirver/UltiSnips
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+" Code Completion
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" TODO: set this up to do the following:
+" [ ] Completion
+" [ ] Tooltips
+" [ ] Go to Definitions
+" [ ] Snippets
+
+" Languages
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
@@ -137,50 +143,38 @@ call plug#end()
 " Plugin Configuration
 " ----------
 
-" nerdcommenter
-let g:NERDSpaceDelims=1
+" Display
+let g:airline_powerline_fonts=1
 
-" ale
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier', 'eslint']
-let g:ale_fixers['typescript'] = ['prettier', 'eslint']
-let g:ale_fix_on_save = 1
-hi ALEError ctermbg=black ctermfg=red
-
-let g:ale_linters = {}
-let g:ale_linters['typescript'] = ['eslint', 'tsserver']
-
-" vim-javascript
-let g:javascript_plugin_jsdoc = 1
-
-" MatchTagAlways
-let g:mta_filetypes = { 'javascript.jsx': 1 }
-
-" ctrlp.vim
+" Application
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
-
-" vim-airline
-let g:airline_powerline_fonts=1
-
-" nerdtree
 map <C-n> :NERDTreeToggle<CR>
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
+let g:startify_custom_header = ['New Relic', 'Zack Stickles']
 
-" deoplete
+" Code Uniformity
+let g:NERDSpaceDelims=1
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_fixers['typescript'] = ['prettier', 'eslint']
+let g:ale_fix_on_save = 1
+let g:ale_linters = {}
+let g:ale_linters['typescript'] = ['eslint', 'tsserver']
+let g:mta_filetypes = { 'javascript.jsx': 1 }
+
+" Code Completion
 let g:deoplete#enable_at_startup=1
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
-" ListToggle
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>q'
-
-" Sartify
-let g:startify_custom_header = ['New Relic', 'Zack Stickles']
+" Languages
+let g:javascript_plugin_jsdoc = 1
 
 " ----------
 " Colors
