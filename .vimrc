@@ -26,12 +26,12 @@ set hidden
 
 set wildmenu
 set wildignorecase
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
 
 set confirm
 set visualbell
-set t_vb= " reset the terminal code for visual bell
+set t_vb=
 set mouse=a
 
 set ruler
@@ -59,6 +59,8 @@ augroup CursorLine
 augroup END
 
 inoremap <C-c> <Esc>
+
+set updatetime=300
 
 " ----------
 " Editor
@@ -108,25 +110,20 @@ Plug 'morhetz/gruvbox'
 
 " Application
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " TODO: replace with coc?
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim' " TODO: replace with coc?
 Plug 'scrooloose/nerdtree'
 
-" Code Uniformity
-Plug 'w0rp/ale'
-Plug 'Valloric/MatchTagAlways'
 Plug 'scrooloose/nerdcommenter'
 
-" Code Completion
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " TODO: set this up to do the following:
-" [ ] Completion
-" [ ] Tooltips
-" [ ] Go to Definitions
+" [x] Prettier
+" [x] Completion
+" [x] Tooltips
+" [x] Go to Definitions
 " [ ] Snippets
 
 " Languages
@@ -154,20 +151,24 @@ noremap <Leader>p :CtrlPTag<CR>
 map <C-n> :NERDTreeToggle<CR>
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 
-" Code Uniformity
-let g:NERDSpaceDelims=1
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier', 'eslint']
-let g:ale_fixers['typescript'] = ['prettier', 'eslint']
-let g:ale_fix_on_save = 1
-let g:ale_linters = {}
-let g:ale_linters['typescript'] = ['eslint', 'tsserver']
-let g:mta_filetypes = { 'javascript.jsx': 1 }
+" coc (additional config in .vim/coc-setting.json)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" Code Completion
-let g:deoplete#enable_at_startup=1
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Languages
 let g:javascript_plugin_jsdoc = 1
