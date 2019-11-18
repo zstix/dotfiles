@@ -119,12 +119,11 @@ Plug 'scrooloose/nerdcommenter'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" TODO: set this up to do the following:
-" [x] Prettier
-" [x] Completion
-" [x] Tooltips
-" [x] Go to Definitions
-" [ ] Snippets
+" coc-json
+" coc-tsserver
+" coc-emmet
+" coc-snippets
+" coc-markdown
 
 " Languages
 Plug 'pangloss/vim-javascript'
@@ -178,6 +177,25 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+imap <C-l> <Plug>(coc-snippets-expand)
+imap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+imap <C-j> <Plug>(coc-snippets-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Languages
 let g:javascript_plugin_jsdoc = 1
