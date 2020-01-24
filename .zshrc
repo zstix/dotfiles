@@ -107,6 +107,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+function search() {
+  DIR="."
+  if [[ $2 ]]; then DIR=$2; fi
+  grep -rni --color=always $1 $DIR
+}
+
 PATH="/usr/local/bin/vim:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
