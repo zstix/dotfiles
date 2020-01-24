@@ -114,7 +114,6 @@ Plug 'tpope/vim-fugitive' " TODO: replace with coc?
 Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim' " TODO: replace with coc?
 Plug 'scrooloose/nerdtree'
-
 Plug 'scrooloose/nerdcommenter'
 
 " coc
@@ -130,6 +129,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
@@ -148,7 +148,9 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
 map <C-n> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
 let g:lt_quickfix_list_toggle_map = '<leader>q'
+let NERDSpaceDelims=1
 
 " coc (additional config in .vim/coc-setting.json)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -204,6 +206,7 @@ let g:javascript_plugin_jsdoc = 1
 " Colors
 " ----------
 
+set background=dark
 colorscheme gruvbox
 
 hi Search ctermbg=NONE ctermfg=white cterm=underline
