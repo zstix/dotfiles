@@ -14,3 +14,5 @@
 	helper = cache
 [core]
   excludesfile = $HOME/.global_ignore
+[pager]
+	branch = false
