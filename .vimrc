@@ -106,7 +106,7 @@ call plug#begin('~/.vim/plugged')
 " Display
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 
 " Application
 Plug 'airblade/vim-gitgutter'
@@ -206,7 +206,6 @@ let g:javascript_plugin_jsdoc = 1
 " Colors
 " ----------
 
-set background=dark
-colorscheme gruvbox
+colorscheme nord
 
-hi Search ctermbg=NONE ctermfg=white cterm=underline
+hi Search ctermbg=none ctermfg=white cterm=underline
