@@ -62,6 +62,11 @@ inoremap <C-c> <Esc>
 
 set updatetime=300
 
+set fillchars+=vert:│
+
+" map <C-i> :terminal ++curwin<CR>
+:set noshowmode
+
 " ----------
 " Editor
 " ----------
@@ -104,9 +109,8 @@ nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 call plug#begin('~/.vim/plugged')
 
 " Display
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Application
 Plug 'airblade/vim-gitgutter'
@@ -115,14 +119,18 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ctrlpvim/ctrlp.vim' " TODO: replace with coc?
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ruanyl/vim-gh-line'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Manage with :CocList extensions (search, tab, action)
 " coc-json
 " coc-tsserver
 " coc-emmet
 " coc-snippets
 " coc-markdown
+" coc-elixir
 
 " Languages
 Plug 'pangloss/vim-javascript'
@@ -130,6 +138,9 @@ Plug 'mxw/vim-jsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'hashivim/vim-terraform'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 
 call plug#end()
 
@@ -138,7 +149,18 @@ call plug#end()
 " ----------
 
 " Display
-let g:airline_powerline_fonts=1
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'ayu_dark',
+      \ 'active': {
+      \   'left': [ ['mode', 'paste'],
+      \      [ 'gitbranch', 'readonly', 'filename', 'modified'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
 
 " Application
 let g:ctrlp_map = '<c-p>'
@@ -147,10 +169,18 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_open_multiple_files = 'ij'
 noremap <Leader>p :CtrlPTag<CR>
+
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+
+
 map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 let NERDSpaceDelims=1
+let NERDTreeSortHiddenFirst=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
 
 " coc (additional config in .vim/coc-setting.json)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -202,10 +232,21 @@ let g:coc_snippet_next = '<tab>'
 " Languages
 let g:javascript_plugin_jsdoc = 1
 
+let g:mix_format_on_save = 1
+
 " ----------
 " Colors
 " ----------
 
-colorscheme nord
+set background=dark
+colorscheme dracula
+
+set fillchars=vert:\ 
 
 hi Search ctermbg=none ctermfg=white cterm=underline
+hi Normal ctermbg=none
+hi EndOfBuffer ctermfg=black ctermfg=black
+hi VertSplit ctermbg=black ctermfg=black
+
+hi elixirAlias ctermbg=none ctermfg=cyan
+hi elixirModuleDeclaration ctermbg=none ctermfg=cyan
