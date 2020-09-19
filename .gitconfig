@@ -14,5 +14,6 @@
 	helper = cache
 [core]
   excludesfile = $HOME/.global_ignore
+	ignorecase = false
 [pager]
 	branch = false
