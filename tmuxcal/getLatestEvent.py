@@ -4,23 +4,22 @@
 # 3. Download the `credentials.json` file and save it in the same dir as this script
 # TODO: steps for running the script
 
-# TODO: save to a /tmp file
 # TODO: display in tmux
 # TODO: color based on proximity
-# TODO: run pyton on interval (15 min?) with instructions in comments
-# TODO: check into dotfiles (except creds file - keybase or something)
+# TODO: run fetch on 15 min interval
+# TODO: run next on 60 sec interval
+# TODO: rename script?
 
 from __future__ import print_function
 import datetime
 import pickle
-import os.path
+import os
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-LIST_FILE = '/tmp/tmuxcal/list.txt'
-NEXT_FILE = '/tmp/tmuxcal/next.txt'
+TMP_DIR = '/tmp/tmuxcal'
 
 def get_service():
     creds = None
@@ -60,15 +59,25 @@ def get_events():
     return list(dict.fromkeys(events))
 
 def write_list_file(events):
-    # TODO: make dir if doesnt exist
-    # TODO: make file if it doesnt exist
-    # TODO: write file
+    filepath = TMP_DIR + '/list.txt'
+    f = open(filepath, 'w')
+    for event in events:
+        f.write(event + "\n")
+    f.close()
+
+def write_next_file(events):
+    filepath = TMP_DIR + '/next.txt'
+    f = open(filepath, 'w')
+    f.write(events[0])
+    f.close()
 
 def main():
-    events = get_events()
+    if not os.path.exists(TMP_DIR):
+        os.makedirs(TMP_DIR)
 
-    for event in events:
-        print(event)
+    events = get_events()
+    write_list_file(events)
+    write_next_file(events)
 
 if __name__ == '__main__':
     main()
