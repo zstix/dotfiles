@@ -1,3 +1,9 @@
+# Instructions
+# 1. Go to https://developers.google.com/calendar/quickstart/python
+# 2. Click "Enable the Google Calendar API" and follow the steps.
+# 3. Download the `credentials.json` file and save it in the same dir as this script
+# TODO: steps for running the script
+
 # TODO: save to a /tmp file
 # TODO: display in tmux
 # TODO: color based on proximity
