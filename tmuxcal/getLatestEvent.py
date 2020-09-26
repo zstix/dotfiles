@@ -111,8 +111,6 @@ def main():
     if not os.path.exists(TMP_DIR):
         os.makedirs(TMP_DIR)
 
-    print(os.path.realpath(__file__))
-
     if len(sys.argv) == 1:
         setup_threads()
     else:
