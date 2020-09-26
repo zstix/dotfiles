@@ -1,13 +1,13 @@
 # Instructions
 # 1. Go to https://developers.google.com/calendar/quickstart/python
-# 2. Click "Enable the Google Calendar API" and follow the steps.
-# 3. Download the `credentials.json` file and save it in the same dir as this script
+# 2. Use pip3 to install dependencies
+# 3A. Download the credentials from google cloud platform (existing)
+# 3B. Click "Enable the Google Calendar API" and follow the steps (new)
+# 4. Save `credentisals.json` to the same dir as this script
 # TODO: steps for running the script
 
-# TODO: display in tmux
 # TODO: color based on proximity
 # TODO: run fetch on 15 min interval
-# TODO: run next on 60 sec interval
 # TODO: rename script?
 
 from __future__ import print_function
@@ -53,7 +53,7 @@ def get_events():
     events = events_result.get('items', [])
 
     if not events:
-        return "No Events Found"
+        return ["No Events Found"]
 
     events = map(get_event_desc, events)
     return list(dict.fromkeys(events))
