@@ -142,6 +142,9 @@ Plug 'jxnblk/vim-mdx-js'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
 
+" Misc
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
 " ----------
@@ -154,13 +157,18 @@ let g:lightline = {
       \ 'colorscheme': 'ayu_dark',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \      [ 'gitbranch', 'readonly', 'filename', 'modified'] ]
+      \      [ 'gitbranch', 'readonly', 'filename', 'modified'] ],
+      \   'right': [[ 'lineinfo' ], ['filetype', 'percent']],
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'filetype': 'MyFiletype',
       \ },
       \ }
 
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 
 " Application
 let g:ctrlp_map = '<c-p>'
@@ -181,6 +189,21 @@ let NERDTreeSortHiddenFirst=1
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
+let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeDirArrowCollapsible=''
+let g:NERDTreeWinSize=25
+
+" Hack to hide lightline in NERDTree
+augroup filetype_nerdtree
+    au!
+    au FileType nerdtree call s:disable_lightline_on_nerdtree()
+    au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
+augroup END
+
+fu s:disable_lightline_on_nerdtree() abort
+    let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
+    call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
+endfu
 
 " coc (additional config in .vim/coc-setting.json)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -246,7 +269,8 @@ set fillchars=vert:\
 hi Search ctermbg=none ctermfg=white cterm=underline
 hi Normal ctermbg=none
 hi EndOfBuffer ctermfg=black ctermfg=black
-hi VertSplit ctermbg=black ctermfg=black
+hi VertSplit ctermbg=Black ctermfg=black
 
 hi elixirAlias ctermbg=none ctermfg=cyan
 hi elixirModuleDeclaration ctermbg=none ctermfg=cyan
+hi type ctermbg=none ctermfg=cyan
