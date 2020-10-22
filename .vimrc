@@ -37,7 +37,7 @@ set mouse=a
 set ruler
 set showcmd
 set showmode
-set cmdheight=2
+set cmdheight=1
 
 set incsearch
 set ignorecase
