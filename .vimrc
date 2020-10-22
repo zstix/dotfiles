@@ -102,6 +102,15 @@ endfunction
 
 nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
 
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+
 " ----------
 " Plugin Definitions
 " ----------
@@ -141,6 +150,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
+Plug 'styled-components/vim-styled-components', {'branch': 'main'}
 
 " Misc
 Plug 'ryanoasis/vim-devicons'
@@ -274,3 +284,6 @@ hi VertSplit ctermbg=Black ctermfg=black
 hi elixirAlias ctermbg=none ctermfg=cyan
 hi elixirModuleDeclaration ctermbg=none ctermfg=cyan
 hi type ctermbg=none ctermfg=cyan
+
+hi DraculaGreenItalic cterm=none
+hi DraculaOrangeItalic cterm=none
