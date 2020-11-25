@@ -17,3 +17,5 @@
 	ignorecase = false
 [pager]
 	branch = false
+[pull]
+	rebase = false

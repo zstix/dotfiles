@@ -62,7 +62,9 @@ inoremap <C-c> <Esc>
 
 set updatetime=300
 
-set fillchars+=vert:│
+" set fillchars+=vert:│
+set fillchars+=vert:\ 
+set numberwidth=5
 
 " map <C-i> :terminal ++curwin<CR>
 :set noshowmode
@@ -120,6 +122,7 @@ call plug#begin('~/.vim/plugged')
 " Display
 Plug 'itchyny/lightline.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'cocopon/iceberg.vim'
 
 " Application
 Plug 'airblade/vim-gitgutter'
@@ -130,6 +133,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ruanyl/vim-gh-line'
+Plug 'Yggdroot/indentLine'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -164,7 +168,7 @@ call plug#end()
 " Display
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'ayu_dark',
+      \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
       \      [ 'gitbranch', 'readonly', 'filename', 'modified'] ],
@@ -190,7 +194,6 @@ noremap <Leader>p :CtrlPTag<CR>
 
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
-
 map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
 let g:lt_quickfix_list_toggle_map = '<leader>q'
@@ -203,17 +206,15 @@ let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeWinSize=25
 
-" Hack to hide lightline in NERDTree
-augroup filetype_nerdtree
-    au!
-    au FileType nerdtree call s:disable_lightline_on_nerdtree()
-    au WinEnter,BufWinEnter,TabEnter * call s:disable_lightline_on_nerdtree()
-augroup END
+let g:indentLine_char='│'
 
-fu s:disable_lightline_on_nerdtree() abort
-    let nerdtree_winnr = index(map(range(1, winnr('$')), {_,v -> getbufvar(winbufnr(v), '&ft')}), 'nerdtree') + 1
-    call timer_start(0, {-> nerdtree_winnr && setwinvar(nerdtree_winnr, '&stl', '%#Normal#')})
-endfu
+set signcolumn=yes
+let g:gitgutter_sign_added = '▌'
+let g:gitgutter_sign_modified = '▌'
+let g:gitgutter_sign_removed = '▌'
+let g:gitgutter_sign_removed_first_line = '▌'
+let g:gitgutter_sign_removed_above_and_below = '▌'
+let g:gitgutter_sign_modified_removed = '▌'
 
 " coc (additional config in .vim/coc-setting.json)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -271,19 +272,24 @@ let g:mix_format_on_save = 1
 " Colors
 " ----------
 
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 set background=dark
-colorscheme dracula
+colorscheme iceberg
 
-set fillchars=vert:\ 
+hi Normal guibg=NONE
+hi LineNr guibg=NONE
+hi SignColumn guibg=NONE
+hi GitGutterAdd guibg=NONE
+hi GitGutterChange guibg=NONE
+hi GitGutterChangeDelete guibg=NONE
+hi GitGutterDelete guibg=NONE
+hi EndOfBuffer guibg=NONE
+hi VertSplit term=NONE guifg=NONE guibg=NONE
+hi CursorLineNr guibg=NONE
 
-hi Search ctermbg=none ctermfg=white cterm=underline
-hi Normal ctermbg=none
-hi EndOfBuffer ctermfg=black ctermfg=black
-hi VertSplit ctermbg=Black ctermfg=black
-
-hi elixirAlias ctermbg=none ctermfg=cyan
-hi elixirModuleDeclaration ctermbg=none ctermfg=cyan
-hi type ctermbg=none ctermfg=cyan
-
-hi DraculaGreenItalic cterm=none
-hi DraculaOrangeItalic cterm=none
+hi Search cterm=underline guibg=NONE guifg=white
