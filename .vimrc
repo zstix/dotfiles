@@ -113,6 +113,15 @@ endfunc
 
 nmap <leader>sp :call <SID>SynStack()<CR>
 
+function! MyFoldText()
+  let line = getline(v:foldstart)
+  let folded_line_num = v:foldend - v:foldstart
+  return '[+] ' . line . ' (' . folded_line_num . ' L)'
+endfunction
+
+set foldtext=MyFoldText()
+set fillchars=fold:\ 
+
 " ----------
 " Plugin Definitions
 " ----------
