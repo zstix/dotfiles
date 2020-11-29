@@ -130,14 +130,14 @@ call plug#begin('~/.vim/plugged')
 
 " Display
 Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'cocopon/iceberg.vim'
 
 " Application
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive' " TODO: replace with coc?
 Plug 'easymotion/vim-easymotion'
-Plug 'ctrlpvim/ctrlp.vim' " TODO: replace with coc?
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -194,12 +194,9 @@ function! MyFiletype()
 endfunction
 
 " Application
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_open_multiple_files = 'ij'
-noremap <Leader>p :CtrlPTag<CR>
 
 let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
@@ -277,6 +274,10 @@ let g:javascript_plugin_jsdoc = 1
 
 let g:mix_format_on_save = 1
 
+let g:fzf_layout = { 'down': '40%' }
+map <C-P> :GFiles<CR>
+map <C-g> :Ag<CR>
+
 " ----------
 " Colors
 " ----------
@@ -302,3 +303,8 @@ hi VertSplit term=NONE guifg=NONE guibg=NONE
 hi CursorLineNr guibg=NONE
 
 hi Search cterm=underline guibg=NONE guifg=white
+
+let g:fzf_colors = {
+\ 'fg+': ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+': ['bg', 'CursorLine', 'CursorColumn'],
+\ }

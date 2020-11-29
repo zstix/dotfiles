@@ -121,3 +121,15 @@ PATH="/usr/local/bin/vim:$PATH"
 if [ -f ~/.local_zshrc ]; then
   . ~/.local_zshrc;
 fi
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias cat="batcat"
+
+export BAT_THEME="base16"
+export FZF_DEFAULT_OPTS='
+--color fg:14,fg+:3,hl:5,hl+:5,bg:-1,bg+:-1
+--color info:6,prompt:6,spinner:1,pointer:3
+--preview-window=noborder:60%
+'
