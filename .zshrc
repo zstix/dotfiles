@@ -125,7 +125,7 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias cat="batcat"
+alias cat="bat"
 
 export BAT_THEME="base16"
 export FZF_DEFAULT_OPTS='
