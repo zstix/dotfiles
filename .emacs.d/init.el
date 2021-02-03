@@ -1,4 +1,4 @@
-;;;
+;;
 ;; Packages
 ;;;;
 
@@ -32,7 +32,24 @@
     magit
 
     ;; theme
-    gruvbox-theme))
+    gruvbox-theme
+
+    ;; clojure key bindings and syntax highlighting
+    clojure-mode
+    clojure-mode-extra-font-locking
+
+    ;; integration with Clojure REPL
+    cider
+
+    ;; colorful parenthesis matching
+    rainbow-delimiters
+
+    ;; edit html tags like sexps
+    tagedit
+
+    ;; project navigation
+    projectile
+    ))
 
 ;; Fix for OSX not treating GUI and terminal emacs the same.
 ;; https://github.com/purcell/exec-path-from-shell
@@ -69,7 +86,10 @@
 (load "ui.el")
 
 ;; These customizations make editing a bit nicer.
-;; (load "editing.el")
+(load "editing.el")
+
+;; Clojure-specific configuration.
+(load "setup-clojure.el")
 
 ;; Hard-to-categorize customizations
 (load "misc.el")
@@ -77,3 +97,16 @@
 ;; TODO: add in other configuration files
 
 ;;;; End manual updates ;;;;
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(projectile tagedit rainbow-delimiters cider clojure-mode-extra-font-locking clojure-mode smex magit gruvbox-theme)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
