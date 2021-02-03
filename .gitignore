@@ -8,5 +8,6 @@ nvim/plugins/*
 .emacs.d/network-security.data
 .emacs.d/transient/
 .emacs.d/cider-history
+.emacs.d/eshell/
 *#
 *~
