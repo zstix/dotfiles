@@ -3,3 +3,8 @@
 *.DS_Store
 nvim/plugins/*
 .oh-my-zsh/
+
+.emacs.d/elpa/
+.emacs.d/network-security.data
+.emacs.d/transient/
+*#
