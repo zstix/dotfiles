@@ -7,5 +7,6 @@ nvim/plugins/*
 .emacs.d/elpa/
 .emacs.d/network-security.data
 .emacs.d/transient/
+.emacs.d/cider-history
 *#
 *~
