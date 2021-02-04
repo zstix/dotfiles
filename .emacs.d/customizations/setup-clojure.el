@@ -8,6 +8,9 @@
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
 
+;; More syntax highlighting
+(require 'clojure-mode-extra-font-locking)
+
 ;;;;
 ;; Cider
 ;;;;

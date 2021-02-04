@@ -31,6 +31,9 @@
     ;; git integration
     magit
 
+    ;; Fuzzy find all the things
+    helm
+
     ;; theme
     gruvbox-theme
 
