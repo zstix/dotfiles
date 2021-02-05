@@ -33,6 +33,7 @@
 
     ;; Fuzzy find all the things
     helm
+    helm-projectile
 
     ;; theme
     gruvbox-theme
@@ -52,6 +53,16 @@
 
     ;; project navigation
     projectile
+
+    ;; JS / Typescript setup
+    web-mode
+    tide
+
+    ;; completion
+    company
+
+    ;; syntax checking
+    flycheck
     ))
 
 ;; Fix for OSX not treating GUI and terminal emacs the same.
@@ -106,7 +117,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(projectile tagedit rainbow-delimiters cider clojure-mode-extra-font-locking clojure-mode smex magit gruvbox-theme)))
+   '(web-mode projectile tagedit rainbow-delimiters cider clojure-mode-extra-font-locking clojure-mode smex magit gruvbox-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -21,6 +21,9 @@
 ;; Color themes.
 (load-theme 'gruvbox-light-soft t)
 
+;; Rainboooow
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
 ;; Increase font size and face for better readability.
 ;; (set-face-attribute 'default nil :height 140)
 (add-to-list 'default-frame-alist
