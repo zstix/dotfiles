@@ -57,3 +57,7 @@
 
 (add-hook 'js-mode-hook #'setup-tide-mode)
 (add-hook 'js-mode-hook 'prettier-js-mode)
+
+;; Evil / VIM settings
+(require 'evil)
+(evil-mode 1)

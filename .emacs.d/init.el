@@ -63,6 +63,9 @@
 
     ;; syntax checking
     flycheck
+
+    ;; Because vim is too good to give up
+    evil
     ))
 
 ;; Fix for OSX not treating GUI and terminal emacs the same.
