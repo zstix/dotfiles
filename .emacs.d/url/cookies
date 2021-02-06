@@ -1,0 +1,22 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".fitbit.com"
+  [url-cookie "__cfduid" "d774e3fd6e4a5c1709a1c73244e40794d1612505202" "Sun, 07-Mar-21 06:06:42 GMT" "/" ".fitbit.com" nil])
+ (".google.com"
+  [url-cookie "NID" "208=ST8x-_fc27G_1wV4FY7XDpj8AS7cEBAD7tfWhFJvu0DZKH9FvRPmMak29fDdY4G1QcrpBJcxcX-63vfT0tIwiNOU2pOvD-X8yezog1xmEbFEpD-4S7p6_nwg6L65iLd7uQjMI3Wj5hi3VTvSeAsOuVjbC2SJmhkExmxJSpm5u70" "Sat, 07-Aug-2021 05:43:47 GMT" "/" ".google.com" nil]
+  [url-cookie "CGIC" "Ik10ZXh0L2h0bWwsIHRleHQvcGxhaW4sIHRleHQvc2dtbCwgdGV4dC9jc3MsIGFwcGxpY2F0aW9uL3hodG1sK3htbCwgKi8qO3E9MC4wMQ" "Wed, 04-Aug-2021 05:43:58 GMT" "/complete/search" ".google.com" nil]
+  [url-cookie "CGIC" "Ik10ZXh0L2h0bWwsIHRleHQvcGxhaW4sIHRleHQvc2dtbCwgdGV4dC9jc3MsIGFwcGxpY2F0aW9uL3hodG1sK3htbCwgKi8qO3E9MC4wMQ" "Wed, 04-Aug-2021 05:43:58 GMT" "/search" ".google.com" nil]))
+)
+(setq url-cookie-secure-storage
+ '((".google.com"
+  [url-cookie "1P_JAR" "2021-02-05-05" "Sun, 07-Mar-2021 05:43:58 GMT" "/" ".google.com" t])
+ ("news.google.com"
+  [url-cookie "GN_PREF" "W251bGwsIkNBRVNEQWlYdGZPQUJoQ2dyYlhJQWciXQo_" "Fri, 06-Aug-2021 17:43:11 GMT" "/" "news.google.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

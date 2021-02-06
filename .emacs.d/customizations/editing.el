@@ -58,6 +58,15 @@
 (add-hook 'js-mode-hook #'setup-tide-mode)
 (add-hook 'js-mode-hook 'prettier-js-mode)
 
-;; Evil / VIM settings
+
+;;;;
+;; Evil / Vim
+;;;;
+
 (require 'evil)
 (evil-mode 1)
+
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.5)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-mode 1)

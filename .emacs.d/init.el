@@ -64,8 +64,11 @@
     ;; syntax checking
     flycheck
 
-    ;; Because vim is too good to give up
+    ;; because vim is too good to give up
     evil
+
+    ;; helper for getting outta insert
+    key-chord
     ))
 
 ;; Fix for OSX not treating GUI and terminal emacs the same.
