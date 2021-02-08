@@ -42,7 +42,8 @@ set cmdheight=1
 set incsearch
 set ignorecase
 set smartcase
-set hlsearch
+set nohlsearch
+set nowrap
 
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -66,8 +67,12 @@ set updatetime=300
 set fillchars+=vert:\ 
 set numberwidth=5
 
-" map <C-i> :terminal ++curwin<CR>
 :set noshowmode
+
+set splitbelow
+
+" exit insert mode with jk
+imap jk <Esc>
 
 " ----------
 " Editor
@@ -142,7 +147,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ruanyl/vim-gh-line'
-Plug 'Yggdroot/indentLine'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -188,6 +192,9 @@ let g:lightline = {
       \   'filetype': 'MyFiletype',
       \ },
       \ }
+let g:lightline.tabline = {
+      \ 'left': [ ['tabs' ] ],
+      \ 'right': [ ] }
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -211,8 +218,6 @@ let NERDTreeDirArrows=1
 let g:NERDTreeDirArrowExpandable=''
 let g:NERDTreeDirArrowCollapsible=''
 let g:NERDTreeWinSize=25
-
-let g:indentLine_char='│'
 
 set signcolumn=yes
 let g:gitgutter_sign_added = '▌'
