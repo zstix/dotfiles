@@ -94,6 +94,15 @@ function! StatuslineGit()
   return strlen(l:branchname) > 0 ? '('.l:branchname.') ' : ''
 endfunction
 
+" Show the hover (typescript definition) or relevant help
+function! ShowDocumentation()
+  if (index(['vim', 'help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 "=================================================
 " Status line
 "=================================================
@@ -198,8 +207,15 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " File browser via
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-N> :NERDTreeToggle<CR>
+nnoremap <C-F> :NERDTreeFind<CR>
+
+" Show help
+nnoremap <silent>K :call ShowDocumentation()<CR>
+
+" Fuzzyfind files
+nnoremap <C-P> :GFiles<CR>
+nnoremap <C-G> :AG<CR>
 
 "=================================================
 " Colors
@@ -217,3 +233,19 @@ catch
 endtry
 
 set background=dark
+
+" Set fzf colors to match the current colorscheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
