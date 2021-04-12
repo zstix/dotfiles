@@ -2,7 +2,7 @@
 	path = .local_gitconfig
 [user]
 	name = Zack Stickles
-	email = zstickles@newrelic.com
+	email = zstickles@gmail.com
 [alias]
 	ci = commit
 	co = checkout
@@ -15,6 +15,7 @@
 [core]
   excludesfile = $HOME/.global_ignore
 	ignorecase = false
+	editor = vim
 [pager]
 	branch = false
 [pull]

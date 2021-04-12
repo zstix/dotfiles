@@ -1,315 +1,270 @@
-" Zack Stickles
-" 2019
+" Personal .vimrc file
+" Author:      Zack Stickles <https://github.com/zstix>
+" Last Change: 2020-04-11
+" License:     This file is placed in the public domain.
 
-" ----------
-" System
-" ----------
+"=================================================
+" General
+"=================================================
 
-set nocompatible
-set path+=**
-set swapfile
-set dir=~/.tmp-swp
+set nocompatible                    " Make vim behave like vim, not like vi
 
-set nobackup
-set nowritebackup
+filetype plugin on                  " Load filetype-specific plugins
+filetype indent on                  " Load filetype-specific indent files
+syntax enable                       " Enable syntax highlighting
 
-set encoding=UTF-8
+set autoread                        " Read when a file has changed from the outside
 
-" ----------
-" Program
-" ----------
+set path+=**                        " Set the dir for searching for files
 
-let mapleader=","
+set tabstop=2                       " Number of visual spaces per tab
+set softtabstop=2                   " Number of spaces in tab when editing
+set shiftwidth=2                    " Ensuring that indentation is correct size
+set expandtab                       " Tabs are spaces
+set smarttab                        " Copy whatever indent format is in the file
 
-set history=50
-set hidden
+set autoindent                      " Copy indent from current line to new line
+set smartindent                     " For C-like programs, indent when language-appropriate
 
-set wildmenu
-set wildignorecase
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+set nowrap                          " Don't wrap lines (debatable)
+set linebreak                       " Wrap lines without breaking words
 
-set confirm
-set visualbell
-set t_vb=
-set mouse=a
+set history=500                     " How many lines of history vim remembers
 
-set ruler
-set showcmd
-set showmode
-set cmdheight=1
+set scrolloff=1                     " Keep a line above and below the cursor
 
-set incsearch
-set ignorecase
-set smartcase
-set nohlsearch
-set nowrap
+set wildmenu                        " Turn on wildmenu
+set wildignorecase                  " Ignore case when searching in the wildmenu
+set wildignore=*.so,*.swp,*.zip     " Ignore compiled, svn, junk files, etc.
+set wildignore+=*/.git*,*/.DS_Store
 
-let g:netrw_liststyle=3
-let g:netrw_banner=0
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_winsize=25
+set ignorecase                      " Ignore case when searching
+set smartcase                       " If you include a capital letter, care about case
+set incsearch                       " Show matches while typing a search
+set nohlsearch                      " Don't highlight the search term (default)
+set magic                           " Turning on regular expressions
 
-augroup CursorLine
-  au!
-  au VimEnter * setlocal cursorline
-  au WinEnter * setlocal cursorline
-  au BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+set cmdheight=1                     " Height of the command bar
+set showcmd                         " Shows (partial) command entry
+set noshowmode                      " Hides the mode (represented in the status line
 
-inoremap <C-c> <Esc>
+set number                          " Show line numbers
+set numberwidth=5                   " Set the gutter width to a fixed size
+set signcolumn=yes                  " Show the sign column for errors / git information
 
-set updatetime=300
+set cursorline                      " Show what line the cursor is on
+set cursorlineopt=number            " Just modify the number for the cursor line
 
-" set fillchars+=vert:│
-set fillchars+=vert:\ 
-set numberwidth=5
+set hidden                          " A bufffer becomes hidden when it is abandoned
 
-:set noshowmode
+set lazyredraw                      " Don't redraw while executing macros
 
-set splitbelow
+set showmatch                       " Show matching brackets when cursor over them
 
-" exit insert mode with jk
-imap jk <Esc>
+set noerrorbells                    " Don't make any sounds
+set novisualbell                    " Don't flash the screen on warning
+set t_vb=                           " Clear out the visual bell indicator
 
-" ----------
-" Editor
-" ----------
+set encoding=utf-8                  " Set the encoding to something that makes sense
 
-set autoindent
-set smartindent
-set backspace=indent,eol,start
-set nostartofline
-set number
-set showmatch
-set cursorline
-syntax on
+set nobackup                        " Don't back up files, just use svn
+set nowritebackup                   " Don't waste time writing backup files
+set noswapfile                      " Don't use swap files
 
-set noeol
-set binary
+set mouse=a                         " Allow the use of the mouse (gasp)
 
-set tabstop=2
-set shiftwidth=2
-set smarttab
-set smartcase
-set expandtab
+set confirm                         " Confirm whether or not you want to quit unsaved files
 
-" ----------
-" Functions
-" ----------
+set backspace=eol,start,indent      " Make backspace work like it should
 
-function! CloseAllBuffersButCurrent()
-  let curr = bufnr("%")
-  let last = bufnr("$")
-  if curr > 1 | silent! execute "1,".(curr-1)."bd" | endif
-  if curr < last | silent! execute (curr+1).",".last."bd" | endif
+set noendofline                     " Don't write anything for the last line of a file
+
+set fillchars+=vert:\               " Set the vertical divider character to a space
+
+let g:netrw_banner=0                " Don't show the banner above file browser
+let g:netrw_liststyle=3             " Display file browser as a tree
+let g:netrw_browse_split=4          " Open files inprevious window
+let g:netrw_altv=1                  " Split to the left
+let g:netrw_winsize=25              " File browser takes up 25% of screen
+
+" Turn on spellcheck for prose-based files
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+autocmd FileType text setlocal spell
+
+"=================================================
+" Custom Functions
+"=================================================
+
+" Get the git branch name for the current directory
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
-nmap <Leader>\c :call CloseAllBuffersButCurrent()<CR>
-
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-nmap <leader>sp :call <SID>SynStack()<CR>
-
-function! MyFoldText()
-  let line = getline(v:foldstart)
-  let folded_line_num = v:foldend - v:foldstart
-  return '[+] ' . line . ' (' . folded_line_num . ' L)'
+" If we're in a repository, return the branch name
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0 ? '('.l:branchname.') ' : ''
 endfunction
 
-set foldtext=MyFoldText()
-set fillchars=fold:\ 
-
-" ----------
-" Plugin Definitions
-" ----------
-
-call plug#begin('~/.vim/plugged')
-
-" Display
-Plug 'itchyny/lightline.vim'
-Plug 'cocopon/iceberg.vim'
-
-" Application
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive' " TODO: replace with coc?
-Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ruanyl/vim-gh-line'
-
-" coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Manage with :CocList extensions (search, tab, action)
-" coc-json
-" coc-tsserver
-" coc-emmet
-" coc-snippets
-" coc-markdown
-" coc-elixir
-
-" Languages
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'hashivim/vim-terraform'
-Plug 'jxnblk/vim-mdx-js'
-Plug 'elixir-editors/vim-elixir'
-Plug 'mhinz/vim-mix-format'
-Plug 'styled-components/vim-styled-components', {'branch': 'main'}
-
-" Misc
-Plug 'ryanoasis/vim-devicons'
-
-call plug#end()
-
-" ----------
-" Plugin Configuration
-" ----------
-
-" Display
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'iceberg',
-      \ 'active': {
-      \   'left': [ ['mode', 'paste'],
-      \      [ 'gitbranch', 'readonly', 'filename', 'modified'] ],
-      \   'right': [[ 'lineinfo' ], ['filetype', 'percent']],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'filetype': 'MyFiletype',
-      \ },
-      \ }
-let g:lightline.tabline = {
-      \ 'left': [ ['tabs' ] ],
-      \ 'right': [ ] }
-
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-" Application
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_open_multiple_files = 'ij'
-
-let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
-
-map <C-n> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFind<CR>
-let g:lt_quickfix_list_toggle_map = '<leader>q'
-let NERDSpaceDelims=1
-let NERDTreeSortHiddenFirst=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-let g:NERDTreeDirArrowExpandable=''
-let g:NERDTreeDirArrowCollapsible=''
-let g:NERDTreeWinSize=25
-
-set signcolumn=yes
-let g:gitgutter_sign_added = '▌'
-let g:gitgutter_sign_modified = '▌'
-let g:gitgutter_sign_removed = '▌'
-let g:gitgutter_sign_removed_first_line = '▌'
-let g:gitgutter_sign_removed_above_and_below = '▌'
-let g:gitgutter_sign_modified_removed = '▌'
-
-" coc (additional config in .vim/coc-setting.json)
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
+" Show the hover (typescript definition) or relevant help
+function! ShowDocumentation()
+  if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
 
-imap <C-l> <Plug>(coc-snippets-expand)
-imap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-imap <C-j> <Plug>(coc-snippets-jump)
+"=================================================
+" Status line
+"=================================================
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+set laststatus=2                    " Always show status line
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+set statusline=                     " Clear out any defaults
+set statusline+=%#Normal#           " Normal colors (brighter)
+set statusline+=[%{mode()}]\        " Current mode
+set statusline+=%f\                 " Relative filepath
+set statusline+=%{StatuslineGit()}  " Git branch
+set statusline+=%#Comment#          " Comment colors (dimmer)
+set statusline+=%m\                 " Modified status
 
-let g:coc_snippet_next = '<tab>'
+set statusline+=%=                  " Left align the next stuff
 
-" Languages
-let g:javascript_plugin_jsdoc = 1
+set statusline+=%y                  " File type
+set statusline+=\ %3.3(%p%%%)       " Percent inside file
+set statusline+=\ %6(%l:%c%)        " Cursor position
 
-let g:mix_format_on_save = 1
+"=================================================
+" Plugins
+"=================================================
 
-let g:fzf_layout = { 'down': '40%' }
-map <C-P> :GFiles<CR>
-map <C-g> :Ag<CR>
+call plug#begin('~/.vim/plugged')
 
-" ----------
+" Application
+Plug 'airblade/vim-gitgutter'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree' " TODO: swap out with built-in option
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+
+" Language-specific
+Plug 'elixir-editors/vim-elixir'
+Plug 'hashivim/vim-terraform'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', {'branch': 'main'}
+
+" coc
+" coc-json, coc-tsserver, coc-emmet, coc-snippets, coc-markdown, coc-elixir
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+
+let NERDTreeShowHidden=1            " Show dotfiles in the file browser
+let NERDTreeSortHiddenFirst=1       " Show dotfiles first
+let NERDTreeMinimalUI=1             " Disable most of the UI
+let NERDTreeWinSize=25              " Set the filebrowser size
+
+"=================================================
+" Mappings
+"=================================================
+
+" Set leader character to ,
+let mapleader=","
+
+" Toggle comments like other editors
+nnoremap <C-_> :Commentary<CR>
+vnoremap <C-_> :Commentary<CR>
+
+" Easier navigation between buffers
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>p :bp<CR>
+nnoremap <Leader><TAB> :bn<CR>
+
+" Toggle spell checking
+nnoremap <Leader>ss :setlocal spell!<CR>
+nnoremap <Leader>sn ]s
+nnoremap <Leader>sp [s
+nnoremap <Leader>sa zg
+nnoremap <Leader>sr z=
+
+" Move vertically by visual line (for wrapped line)
+nnoremap j gj
+nnoremap k gk
+
+" Emacs-like (gasp) bindings for command bar
+cnoremap <C-A> <HOME>
+cnoremap <C-E> <END>
+cnoremap <C-K> <C-U>
+
+" Use jk to escape insert mode
+inoremap jk <ESC>
+
+" Load the current file
+nnoremap <Leader>so :source %<CR>
+
+" Shortcuts to editing configuration files
+nnoremap <Leader>vi :sp $MYVIMRC<CR>
+nnoremap <Leader>zs :sp ~/.zshrc<CR>
+nnoremap <Leader>al :sp ~/.alacritty<CR>
+
+" Use tab (and ahift) to complete popup menu suggestions
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" File browser via
+nnoremap <C-N> :NERDTreeToggle<CR>
+nnoremap <C-F> :NERDTreeFind<CR>
+
+" Show help
+nnoremap <silent>K :call ShowDocumentation()<CR>
+
+" Fuzzyfind files
+nnoremap <C-P> :GFiles<CR>
+nnoremap <C-G> :AG<CR>
+
+"=================================================
 " Colors
-" ----------
+"=================================================
 
+" Set colors to GUI colors, if available
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
+" Set the colorscheme (with a better fallback)
+try
+  colorscheme onedark
+catch
+  echo "Missing colorscheme!"
+  colorscheme desert
+endtry
+
+" Set the background to dark (for colorscheme) and transparent
 set background=dark
-colorscheme iceberg
-
 hi Normal guibg=NONE
-hi LineNr guibg=NONE
-hi SignColumn guibg=NONE
-hi GitGutterAdd guibg=NONE
-hi GitGutterChange guibg=NONE
-hi GitGutterChangeDelete guibg=NONE
-hi GitGutterDelete guibg=NONE
-hi EndOfBuffer guibg=NONE
-hi VertSplit term=NONE guifg=NONE guibg=NONE
-hi CursorLineNr guibg=NONE
 
-hi Search cterm=underline guibg=NONE guifg=white
-
-let g:fzf_colors = {
-\ 'fg+': ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-\ 'bg+': ['bg', 'CursorLine', 'CursorColumn'],
-\ }
+" Set fzf colors to match the current colorscheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
