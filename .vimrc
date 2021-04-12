@@ -81,6 +81,12 @@ set noendofline                     " Don't write anything for the last line of 
 
 set fillchars+=vert:\               " Set the vertical divider character to a space
 
+let g:netrw_banner=0                " Don't show the banner above file browser
+let g:netrw_liststyle=3             " Display file browser as a tree
+let g:netrw_browse_split=4          " Open files inprevious window
+let g:netrw_altv=1                  " Split to the left
+let g:netrw_winsize=25              " File browser takes up 25% of screen
+
 "=================================================
 " Custom Functions
 "=================================================
