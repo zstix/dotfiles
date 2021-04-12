@@ -237,7 +237,7 @@ nnoremap <silent>K :call ShowDocumentation()<CR>
 
 " Fuzzyfind files
 nnoremap <C-P> :GFiles<CR>
-nnoremap <C-G> :AG<CR>
+nnoremap <C-G> :Ag<CR>
 
 "=================================================
 " Colors
