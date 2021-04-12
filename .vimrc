@@ -87,6 +87,11 @@ let g:netrw_browse_split=4          " Open files inprevious window
 let g:netrw_altv=1                  " Split to the left
 let g:netrw_winsize=25              " File browser takes up 25% of screen
 
+" Turn on spellcheck for prose-based files
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
+autocmd FileType text setlocal spell
+
 "=================================================
 " Custom Functions
 "=================================================
