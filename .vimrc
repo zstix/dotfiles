@@ -1,6 +1,6 @@
 " Personal .vimrc file
 " Author:      Zack Stickles <https://github.com/zstix>
-" Last Change: 2020-04-11
+" Last Change: 2020-04-12
 " License:     This file is placed in the public domain.
 
 "=================================================
@@ -60,6 +60,7 @@ set hidden                          " A bufffer becomes hidden when it is abando
 set lazyredraw                      " Don't redraw while executing macros
 
 set showmatch                       " Show matching brackets when cursor over them
+set matchtime=2                     " Tenths of a second to show the matching bracket
 
 set noerrorbells                    " Don't make any sounds
 set novisualbell                    " Don't flash the screen on warning
@@ -101,9 +102,15 @@ function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
-" If we're in a repository, return the branch name
+" Call the function to get the branch _only_ on certain events
+augroup gitstatusline
+  autocmd!
+  autocmd BufEnter,FocusGained,BufWritePost * let b:git_status = GitBranch()
+augroup end
+
+" Get the branch name in a pretty format
 function! StatuslineGit()
-  let l:branchname = GitBranch()
+  let l:branchname = get(b:, "git_status", "")
   return strlen(l:branchname) > 0 ? '('.l:branchname.') ' : ''
 endfunction
 
@@ -126,14 +133,14 @@ set statusline=                     " Clear out any defaults
 set statusline+=%#Normal#           " Normal colors (brighter)
 set statusline+=[%{mode()}]\        " Current mode
 set statusline+=%f\                 " Relative filepath
-set statusline+=%{StatuslineGit()}  " Git branch
 set statusline+=%#Comment#          " Comment colors (dimmer)
+set statusline+=%{StatuslineGit()}  " Git branch
 set statusline+=%m\                 " Modified status
 
 set statusline+=%=                  " Left align the next stuff
 
 set statusline+=%y                  " File type
-set statusline+=\ %3.3(%p%%%)       " Percent inside file
+set statusline+=\ %4.4(%p%%%)       " Percent inside file
 set statusline+=\ %6(%l:%c%)        " Cursor position
 
 "=================================================
@@ -180,6 +187,8 @@ let NERDTreeWinSize=25              " Set the filebrowser size
 let mapleader=","
 
 " Toggle comments like other editors
+nnoremap <Leader>c<SPACE> :Comment<CR>
+vnoremap <Leader>c<SPACE> :Comment<CR>
 nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
 
@@ -213,7 +222,7 @@ nnoremap <Leader>so :source %<CR>
 " Shortcuts to editing configuration files
 nnoremap <Leader>vi :sp $MYVIMRC<CR>
 nnoremap <Leader>zs :sp ~/.zshrc<CR>
-nnoremap <Leader>al :sp ~/.alacritty<CR>
+nnoremap <Leader>al :sp ~/.alacritty.yml<CR>
 
 " Use tab (and ahift) to complete popup menu suggestions
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
