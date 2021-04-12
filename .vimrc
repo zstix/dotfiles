@@ -7,6 +7,8 @@
 " General
 "=================================================
 
+set nocompatible                    " Make vim behave like vim, not like vi
+
 filetype plugin on                  " Load filetype-specific plugins
 filetype indent on                  " Load filetype-specific indent files
 syntax enable                       " Enable syntax highlighting
