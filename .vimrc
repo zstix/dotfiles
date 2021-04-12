@@ -1,6 +1,6 @@
 " Personal .vimrc file
 " Author:      Zack Stickles <https://github.com/zstix>
-" Last Change: 2020-04-10
+" Last Change: 2020-04-11
 " License:     This file is placed in the public domain.
 
 "=================================================
@@ -221,10 +221,14 @@ nnoremap <C-G> :AG<CR>
 " Colors
 "=================================================
 
+" Set colors to GUI colors, if available
 if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
+" Set the colorscheme (with a better fallback)
 try
   colorscheme onedark
 catch
@@ -232,7 +236,9 @@ catch
   colorscheme desert
 endtry
 
+" Set the background to dark (for colorscheme) and transparent
 set background=dark
+hi Normal guibg=NONE
 
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
