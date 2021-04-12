@@ -17,10 +17,10 @@ autoload -U colors && colors      # Enable colors
 function git_branch {
 	BRANCH="$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)"
 	if ! test -z $BRANCH; then
-		COL="%{$fg[green]%}("
-		[[ $(git log origin/HEAD..HEAD 2> /dev/null ) != "" ]] && COL="%{$fg[blue]%}(^"
-		[[ $(git status --porcelain 2> /dev/null) != "" ]] && COL="%{$fg[red]%}(+"
-		echo "$COL$BRANCH)"
+		COL="%{$fg[green]%}"
+		[[ $(git log origin/main..HEAD 2> /dev/null ) != "" ]] && COL="%{$fg[blue]%}("
+		[[ $(git status --porcelain 2> /dev/null) != "" ]] && COL="%{$fg[red]%}("
+		echo "$COL($BRANCH)"
 	fi
 }
 
