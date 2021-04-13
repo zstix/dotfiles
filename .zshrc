@@ -44,7 +44,8 @@ fi
 
 # Get the current branch (for the prompt)
 function git_branch {
-	BRANCH="$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)"
+	# BRANCH="$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)"
+  BRANCH="$(git status 2>/dev/null | head -n 1 | awk '{print $3}')"
 	if ! test -z $BRANCH; then
 		COL="%{$fg[green]%}"
 		[[ $(git log origin/main..HEAD 2> /dev/null ) != "" ]] && COL="%{$fg[blue]%}"
