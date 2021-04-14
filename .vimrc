@@ -88,15 +88,10 @@ let g:netrw_browse_split=4          " Open files inprevious window
 let g:netrw_altv=1                  " Split to the left
 let g:netrw_winsize=25              " File browser takes up 25% of screen
 
-" Turn on spellcheck for prose-based files
-autocmd FileType gitcommit setlocal spell
-autocmd FileType markdown setlocal spell
-autocmd FileType text setlocal spell
-
-" Turn off line numbers for prose-based files
-autocmd FileType gitcommit setlocal nonumber
-autocmd FileType markdown setlocal nonumber
-autocmd FileType text setlocal nonumber
+" Turn on spellcheck and disable gutter for prose-based files
+autocmd FileType gitcommit setlocal spell nonumber signcolumn=no
+autocmd FileType markdown setlocal spell nonumber signcolumn=no
+autocmd FileType text setlocal spell nonumber signcolumn=no
 
 "=================================================
 " Custom Functions
