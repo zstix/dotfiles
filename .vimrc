@@ -124,6 +124,31 @@ function! ShowDocumentation()
   endif
 endfunction
 
+" Messy way of getting the owner/repo from a SSH url
+function! GetGitRepo()
+  let l:remote_url = "git config --get remote.origin.url"
+  let l:repo = system(l:remote_url . " | cut -d ':' -f 2 | cut -d '.' -f 1")
+  return substitute(l:repo, '\n$', '', '')
+endfunction
+
+" Open the browser the current file / line on Github
+function! OpenGithubLine(branch = 'develop')
+  if !exists('g:browser_command')
+    if has('win32') || has('win64')
+      let g:browser_command = 'start '
+    else
+      let g:browser_command = 'open '
+    endif
+  endif
+
+  let l:repo = GetGitRepo()
+  let l:file = expand('%:f')
+  let l:base_url = 'https://github.com/' . l:repo . '/tree/' . a:branch
+  let l:url = base_url . '/' . expand('%:f') . '#L' . line('.')
+
+  call system(g:browser_command . l:url)
+endfunction
+
 "=================================================
 " Status line
 "=================================================
@@ -239,6 +264,9 @@ nnoremap <silent>K :call ShowDocumentation()<CR>
 " Fuzzyfind files
 nnoremap <C-P> :GFiles<CR>
 nnoremap <C-G> :Ag<CR>
+
+" Open Github to the current line
+nnoremap <Leader>gh :call OpenGithubLine()<CR>
 
 "=================================================
 " Colors
