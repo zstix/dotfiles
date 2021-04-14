@@ -26,7 +26,7 @@ set smarttab                        " Copy whatever indent format is in the file
 set autoindent                      " Copy indent from current line to new line
 set smartindent                     " For C-like programs, indent when language-appropriate
 
-set nowrap                          " Don't wrap lines (debatable)
+set wrap                            " Don't wrap lines (default)
 set linebreak                       " Wrap lines without breaking words
 
 set history=500                     " How many lines of history vim remembers
@@ -92,6 +92,11 @@ let g:netrw_winsize=25              " File browser takes up 25% of screen
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
 autocmd FileType text setlocal spell
+
+" Turn off line numbers for prose-based files
+autocmd FileType gitcommit setlocal nonumber
+autocmd FileType markdown setlocal nonumber
+autocmd FileType text setlocal nonumber
 
 "=================================================
 " Custom Functions
