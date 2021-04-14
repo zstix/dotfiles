@@ -1,6 +1,6 @@
 " Personal .vimrc file
 " Author:      Zack Stickles <https://github.com/zstix>
-" Last Change: 2020-04-12
+" Last Change: 2020-04-14
 " License:     This file is placed in the public domain.
 
 "=================================================
@@ -88,10 +88,11 @@ let g:netrw_browse_split=4          " Open files inprevious window
 let g:netrw_altv=1                  " Split to the left
 let g:netrw_winsize=25              " File browser takes up 25% of screen
 
-" Turn on spellcheck and disable gutter for prose-based files
-autocmd FileType gitcommit setlocal spell nonumber signcolumn=no
-autocmd FileType markdown setlocal spell nonumber signcolumn=no
-autocmd FileType text setlocal spell nonumber signcolumn=no
+" Turn on spellcheck and disable line numbers for prose-based files
+autocmd FileType gitcommit setlocal spell nonumber
+autocmd FileType fugitive setlocal spell nonumber
+autocmd FileType markdown setlocal spell nonumber
+autocmd FileType text setlocal spell nonumber
 
 "=================================================
 " Custom Functions
