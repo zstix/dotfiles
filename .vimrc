@@ -229,6 +229,7 @@ nnoremap <Leader>sn ]s
 nnoremap <Leader>sp [s
 nnoremap <Leader>sa zg
 nnoremap <Leader>sr z=
+nnoremap <Leader>sl 1z=
 
 " Move vertically by visual line (for wrapped line)
 nnoremap j gj
