@@ -166,6 +166,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
+Plug 'othree/jsdoc-syntax.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', {'branch': 'main'}
