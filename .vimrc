@@ -232,9 +232,10 @@ nnoremap <Leader>al :sp ~/.alacritty.yml<CR>
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" File browser via
-nnoremap <C-N> :NERDTreeToggle<CR>
-nnoremap <C-F> :NERDTreeFind<CR>
+" File browser via netrw
+nnoremap <C-N> :Lexplore<CR>
+" nnoremap <C-N> :NERDTreeToggle<CR>
+" nnoremap <C-F> :NERDTreeFind<CR>
 
 " Show help
 nnoremap <silent>K :call ShowDocumentation()<CR>
