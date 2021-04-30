@@ -1,5 +1,7 @@
 hide_cursor_when_typing: true
 
+background_opacity: 0.95
+
 font:
   normal:
     family: SauceCodePro Nerd Font
@@ -20,7 +22,8 @@ font:
 
 colors:
   primary:
-    background: '0x1e2127'
+    # background: '0x1e2127'
+    background: '0x0e1117'
     foreground: '0xabb2bf'
 
   normal:
