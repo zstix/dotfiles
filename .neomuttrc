@@ -1,0 +1,44 @@
+# Accounts: New Relic
+
+set from = "zstickles@newrelic.com"
+set imap_user = "zstickles@newrelic.com"
+set smtp_url = "smtps://zstickles@newrelic.ext@smtp.gmail.com:587"
+
+# General
+
+set my_name = "Zack Stickles"
+set realname = "Zack Stickles"
+
+set folder = "imaps://imap.gmail.com:993"
+
+set imap_passive
+set imap_keepalive = 300
+set smtp_authenticators = "plain"
+
+set envelope_from
+set use_from = "yes"
+
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent"
+set trash = "+Trash"
+
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+
+set editor = "vim"
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+
+# Colors
+
+color normal default default
+color status white black
+
+color index_author blue default '.*'
+color index_subject cyan default '~N'
+
+# Mappings
+
+bind pager c imap-fetch-mail
