@@ -239,6 +239,12 @@ nnoremap <C-G> :Ag<CR>
 " Open Github to the current file
 nnoremap <Leader>gh :Gbrowse<CR>
 
+" Better file navigation with coc
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
+
 "=================================================
 " Colors
 "=================================================
