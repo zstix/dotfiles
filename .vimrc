@@ -155,7 +155,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree' " TODO: swap out with built-in option
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -176,11 +175,6 @@ Plug 'styled-components/vim-styled-components', {'branch': 'main'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
-
-let NERDTreeShowHidden=1            " Show dotfiles in the file browser
-let NERDTreeSortHiddenFirst=1       " Show dotfiles first
-let NERDTreeMinimalUI=1             " Disable most of the UI
-let NERDTreeWinSize=25              " Set the filebrowser size
 
 "=================================================
 " Mappings
@@ -234,8 +228,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " File browser via netrw
 nnoremap <C-N> :Lexplore<CR>
-" nnoremap <C-N> :NERDTreeToggle<CR>
-" nnoremap <C-F> :NERDTreeFind<CR>
 
 " Show help
 nnoremap <silent>K :call ShowDocumentation()<CR>
