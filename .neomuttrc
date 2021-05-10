@@ -12,6 +12,7 @@ set realname = "Zack Stickles"
 set folder = "imaps://imap.gmail.com:993"
 
 set imap_passive
+set imap_idle
 set imap_keepalive = 300
 set smtp_authenticators = "plain"
 
@@ -26,10 +27,20 @@ set trash = "+Trash"
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 
+set reply_to
+set reverse_name
+
+set pager_stop
+
+# UI
+
 set editor = "vim"
 
 set sort = threads
 set sort_aux = reverse-last-date-received
+set sort_re
+
+set collapse_all = yes
 
 # Colors
 
