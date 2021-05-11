@@ -4,18 +4,18 @@ background_opacity: 0.95
 
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: SauceCodePro Nerd Font Mono
     style: Regular
 
   bold:
-    family: SauceCodePro Nerd Font
+    family: SauceCodePro Nerd Font Mono
     style: Bold
 
   italic:
-    family: SauceCodePro Nerd Font
+    family: SauceCodePro Nerd Font Mono
     style: Italic
 
-  size: 14.0
+  size: 12.0
 
   offset:
     y: 1
