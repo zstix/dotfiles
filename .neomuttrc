@@ -21,8 +21,8 @@ set use_from = "yes"
 
 set spoolfile = "+INBOX"
 set postponed = "+Drafts"
+set record = "+Sent"
 set trash = "+Trash"
-set record = ""
 
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
@@ -51,3 +51,5 @@ color index_author blue default '.*'
 color index_subject cyan default '~N'
 
 # Mappings
+
+bind pager c imap-fetch-mail
