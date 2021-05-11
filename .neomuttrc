@@ -27,12 +27,9 @@ set trash = "+Trash"
 set header_cache = "~/.mutt/cache/headers"
 set message_cachedir = "~/.mutt/cache/bodies"
 
-set reply_to
-set reverse_name
-
-set pager_stop
-
 # UI
+
+set beep_new
 
 set editor = "vim"
 
@@ -42,6 +39,13 @@ set sort_re
 
 set collapse_all = yes
 
+set reply_to
+set reverse_name
+
+set pager_stop
+
+set pager_index_lines = 5
+
 # Colors
 
 color normal default default
@@ -49,7 +53,13 @@ color status white black
 
 color index_author blue default '.*'
 color index_subject cyan default '~N'
+color tree white default
+
+color header white black .
+color quoted white default
 
 # Mappings
 
-bind pager c imap-fetch-mail
+macro index c '<imap-fetch-mail><sync-mailbox>'
+
+macro pager d '<delete-message><exit>'
