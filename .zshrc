@@ -63,13 +63,6 @@ function search() {
   grep -rni --color=always $1 $DIR
 }
 
-# Create a new note
-function note() {
-  TITLE="$@"
-  FILENAME="$(date +'%Y-%m-%d')_${TITLE// /-}.md"
-  vim "$NOTE_DIR/$FILENAME"
-}
-
 #=================================================
 # Prompt
 #=================================================
