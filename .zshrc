@@ -27,6 +27,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export NOTE_DIR="~/Dropbox/notes"
+
 #=================================================
 # Features
 #=================================================
@@ -59,6 +61,13 @@ function search() {
   DIR="."
   if [[ $2 ]]; then DIR=$2; fi
   grep -rni --color=always $1 $DIR
+}
+
+# Create a new note
+function note() {
+  TITLE="$@"
+  FILENAME="$(date +'%Y-%m-%d')_${TITLE// /-}.md"
+  vim "$NOTE_DIR/$FILENAME"
 }
 
 #=================================================
