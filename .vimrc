@@ -94,6 +94,10 @@ autocmd FileType fugitive setlocal spell nonumber
 autocmd FileType markdown setlocal spell nonumber
 autocmd FileType text setlocal spell nonumber
 
+" Markdown improvements for notes
+autocmd FileType markdown syntax match Comment /\%^---\_.\{-}---$/
+let g:markdown_fenced_languages = ['javascript', 'elixir', 'sh', 'vim', 'json', 'diff', 'python', 'html', 'jsx']
+
 "=================================================
 " Custom Functions
 "=================================================
