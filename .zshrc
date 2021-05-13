@@ -27,7 +27,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NOTE_DIR="~/Dropbox/notes"
+export NOTE_DIR=~/Dropbox/notes
 
 #=================================================
 # Features
@@ -61,6 +61,34 @@ function search() {
   DIR="."
   if [[ $2 ]]; then DIR=$2; fi
   grep -rni --color=always $1 $DIR
+}
+
+# Easy notes
+function note() {
+  TITLE="$@"
+  FILENAME=$(date +'%Y-%m-%d')_${TITLE// /-}.md
+  FILEPATH=$NOTE_DIR/$FILENAME
+
+  cat $NOTE_DIR/templates/note.md | \
+    sed "s/NAME/$TITLE/" | \
+    sed "s/DATE/$(date +'%Y-%m-%d %H:%M')/" \
+    > $FILEPATH
+
+  vim $FILEPATH +6
+}
+
+# Easy meeting notes
+function meeting() {
+  TITLE="$@"
+  FILENAME=$(date +'%Y-%m-%d')_${TITLE// /-}.md
+  FILEPATH=$NOTE_DIR/$FILENAME
+
+  cat $NOTE_DIR/templates/meeting.md | \
+    sed "s/NAME/$TITLE/" | \
+    sed "s/DATE/$(date +'%Y-%m-%d %H:%M')/" \
+    > $FILEPATH
+
+  vim $FILEPATH +4
 }
 
 #=================================================
