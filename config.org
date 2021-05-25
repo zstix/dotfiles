@@ -77,11 +77,13 @@ Tabs are always 2 spaces! Also have TAB autocomplete first, then
 indent as expected.
 
 #+begin_src emacs-lisp :results none
-	(setq tab-width 2)
-	(setq tab-width 2)
-	(setq indent-tabs-mode nil)
   (setq tab-width 2)
-	(setq tab-always-indent 'complete)
+  (setq default-tab-width 2)
+  (setq indent-tabs-mode nil)
+  (setq tab-always-indent 'complete)
+
+  (setq c-basic-offset 2)
+  (setq js-indent-level 2)
 #+end_src
 
 * UI customization
@@ -116,6 +118,7 @@ Display line numbers, except in certain major modes.
 
   (add-hook 'eshell-mode-hook (lambda () (linum-mode 0)))
   (add-hook 'eww-mode-hook (lambda () (linum-mode 0)))
+  (add-hook 'info-mode-hook (lambda () (linum-mode 0)))
 #+end_src
 
 Fonts. Still need to figure out some fallback options.
@@ -199,3 +202,9 @@ Fuzzy finding all the things is really nice, let's set that up.
  #+end_src
  
 * Language-specific configuration
+
+Setup YAML
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'yaml-moe)
+#+end_src
