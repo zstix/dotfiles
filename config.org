@@ -23,6 +23,8 @@ Emacs configuration using org mode. This is very much a learning process.
 
 * Boilerplate stuff
 
+** Configuration configuraiton
+   
 Don't ask to run ~emacs-lisp~ code blocks in this file, just do it.
 
 #+begin_src emacs-lisp :results none
@@ -31,6 +33,8 @@ Don't ask to run ~emacs-lisp~ code blocks in this file, just do it.
 (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
 #+end_src
 
+** System settings
+   
 Disable backups, I've never liked this.
 
 #+begin_src emacs-lisp :results none
@@ -39,6 +43,23 @@ Disable backups, I've never liked this.
       auto-save-default nil)
 #+end_src
 
+Use CMD for META on mac.
+
+#+begin_src emacs-lisp :results none
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none)
+#+end_src
+
+Default to following symlinks (for my dotfiles).
+
+#+begin_src emacs-lisp :results none
+(setq vc-follow-symlinks t)
+#+end_src
+
+** Packages
+   
 Setup package repositories and add an easier way to install packages,
 if needed.
 
@@ -58,21 +79,8 @@ if needed.
     (package-install pkg)))
 #+end_src
 
-Use CMD for META on mac.
-
-#+begin_src emacs-lisp :results none
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-      mac-command-modifier 'meta
-      mac-option-modifier 'none)
-#+end_src
-
-Default to following symlinks (for my dotfiles).
-
-#+begin_src emacs-lisp :results none
-(setq vc-follow-symlinks t)
-#+end_src
-
+** Editor
+   
 Tabs are always 2 spaces! Also have TAB autocomplete first, then
 indent as expected.
 
@@ -84,6 +92,15 @@ indent as expected.
 
   (setq c-basic-offset 2)
   (setq js-indent-level 2)
+#+end_src
+
+** Shell
+
+I (currently) prefer to use ZSH whenever I open a shell
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
 #+end_src
 
 * UI customization
@@ -206,5 +223,5 @@ Fuzzy finding all the things is really nice, let's set that up.
 Setup YAML
 
 #+begin_src emacs-lisp :results none
-(my-package-install 'yaml-moe)
+(my-package-install 'yaml-mode)
 #+end_src
