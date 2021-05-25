@@ -1,0 +1,153 @@
+#+TITLE: Emacs Configuraiton
+#+AUTHOR: Zack Stickles
+
+Emacs configuration using org mode. This is very much a learning process.
+
+* Cheet sheet
+
+** Helpful commands
+
+| Command     | Description              |
+|-------------+--------------------------|
+| ~C-x C-s~   | save file                |
+| ~C-c C-c~   | toggle checkbox          |
+| ~C-c C-c~   | evaluate code block      |
+| ~C-c C-t~   | toggle todo state        |
+| ~C-h f~     | Help for function        |
+| ~C-c C-, s~ | Insert source code block |
+
+** Tips and tricks
+   - ~:results none~ will precent a result output
+   - TAB on a bullet will collapse it
+   - SHIFT-TAB on a bullet will collapse everything
+
+* Boilerplate stuff
+
+Don't ask to run ~emacs-lisp~ code blocks in this file, just do it.
+
+#+begin_src emacs-lisp :results none
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (string= lang "emacs-lisp")))
+(setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
+#+end_src
+
+Disable backups, I've never liked this.
+
+#+begin_src emacs-lisp :results none
+(setq backup-inhibited t
+      make-backup-files nil
+      auto-save-default nil)
+#+end_src
+
+Setup package repositories and add an easier way to install packages,
+if needed.
+
+#+begin_src emacs-lisp :results none
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defun my-package-install (pkg)
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
+#+end_src
+
+* UI customization
+  
+** TODO [4/7]
+   - [X] hide elements
+   - [X] theme
+   - [X] line numbers
+   - [X] fonts
+   - [ ] highligh current line number
+   - [ ] nicer status line
+   - [ ] fallback fonts
+
+Disable some of the UI elements that I don't need
+
+#+begin_src emacs-lisp :results none
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+#+end_src
+
+Dracula theme, gotta have a dark mode. Nice.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'dracula-theme)
+(load-theme 'dracula t)
+#+end_src
+
+Display line numbers.
+
+#+begin_src emacs-lisp :results none
+(global-display-line-numbers-mode)
+#+end_src
+
+Fonts. Still need to figure out some fallback options.
+
+#+begin_src emacs-lisp :results none
+(set-face-attribute 'default nil
+                    :family "SauceCodePro Nerd Font Mono"
+                    :height 110
+                    :width 'normal
+                    :weight 'normal)
+#+end_src
+
+* VIM emulation
+
+** TODO [2/3]
+   - [X] evil mode
+   - [X] jk to exit insert mode
+   - [ ] leader key
+
+Set up evil mode, which is the main way that emacs becomes usable.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'evil)
+(require 'evil)
+(evil-mode 1)
+#+end_src
+
+Use ~jk~ to exit insert mode escape is too far away and I'm trying to
+break the habit of using ~C-c~, since it doesn't play well with visual
+block and Emacs.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'evil-escape)
+(evil-escape-mode 1)
+(setq-default evil-escape-key-sequence "jk")
+(setq-default evil-escape-delay 0.2)
+#+end_src
+
+* Auto completion
+  
+Completion is mostly handled by company, here we ensure it's loaded in
+all bufers.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'company)
+(company-mode 1)
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
+* Helm
+
+** TODO [1/2]
+   - [X] Install
+   - [ ] Configure
+
+Fuzzy finding all the things is really nice, let's set that up.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'helm)
+(helm-mode 1)
+#+end_src
+
+* GIT integration
+* Language-specific configuration
