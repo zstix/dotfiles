@@ -58,6 +58,32 @@ if needed.
     (package-install pkg)))
 #+end_src
 
+Use CMD for META on mac.
+
+#+begin_src emacs-lisp :results none
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none)
+#+end_src
+
+Default to following symlinks (for my dotfiles).
+
+#+begin_src emacs-lisp :results none
+(setq vc-follow-symlinks t)
+#+end_src
+
+Tabs are always 2 spaces! Also have TAB autocomplete first, then
+indent as expected.
+
+#+begin_src emacs-lisp :results none
+	(setq tab-width 2)
+	(setq tab-width 2)
+	(setq indent-tabs-mode nil)
+  (setq tab-width 2)
+	(setq tab-always-indent 'complete)
+#+end_src
+
 * UI customization
   
 ** TODO [4/7]
@@ -76,11 +102,11 @@ Disable some of the UI elements that I don't need
 (tool-bar-mode -1)
 #+end_src
 
-Dracula theme, gotta have a dark mode. Nice.
+OneDark theme, gotta have a dark mode. Nice.
 
 #+begin_src emacs-lisp :results none
-(my-package-install 'dracula-theme)
-(load-theme 'dracula t)
+(my-package-install 'atom-one-dark-theme)
+(load-theme 'atom-one-dark t)
 #+end_src
 
 Display line numbers.
@@ -92,11 +118,17 @@ Display line numbers.
 Fonts. Still need to figure out some fallback options.
 
 #+begin_src emacs-lisp :results none
-(set-face-attribute 'default nil
-                    :family "SauceCodePro Nerd Font Mono"
-                    :height 110
-                    :width 'normal
-                    :weight 'normal)
+  (set-face-attribute 'default nil
+			  :family "SauceCodePro Nerd Font Mono"
+			  :height 110
+			  :width 'normal
+			  :weight 'normal)
+  (if (eq system-type 'darwin)
+    (set-face-attribute 'default nil
+			  :family "SauceCodePro Nerd Font"
+			  :height 130
+			  :width 'normal
+			  :weight 'normal))
 #+end_src
 
 * VIM emulation
@@ -150,4 +182,11 @@ Fuzzy finding all the things is really nice, let's set that up.
 #+end_src
 
 * GIT integration
+
+ Git integration is handled by magit.
+
+ #+begin_src emacs-lisp :results none
+(my-package-install 'magit)
+ #+end_src
+ 
 * Language-specific configuration
