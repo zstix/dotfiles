@@ -109,10 +109,13 @@ OneDark theme, gotta have a dark mode. Nice.
 (load-theme 'atom-one-dark t)
 #+end_src
 
-Display line numbers.
+Display line numbers, except in certain major modes.
 
 #+begin_src emacs-lisp :results none
-(global-display-line-numbers-mode)
+  (linum-mode t)
+
+  (add-hook 'eshell-mode-hook (lambda () (linum-mode 0)))
+  (add-hook 'eww-mode-hook (lambda () (linum-mode 0)))
 #+end_src
 
 Fonts. Still need to figure out some fallback options.
