@@ -154,6 +154,15 @@ Fonts. Still need to figure out some fallback options.
 			  :weight 'normal))
 #+end_src
 
+For now, I have something that reminds me of NerdTree. I think there's
+probably a more "emacs way" of handling file stuff that I might explore
+in the future.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+#+end_src
+
 * VIM emulation
 
 ** TODO [2/3]
