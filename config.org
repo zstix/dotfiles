@@ -149,6 +149,12 @@ Set up evil mode, which is the main way that emacs becomes usable.
 (evil-mode 1)
 #+end_src
 
+Configure evil mode to operate a little more like vim.
+
+#+begin_src emacs-lisp :results none
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+#+end_src
+
 Use ~jk~ to exit insert mode escape is too far away and I'm trying to
 break the habit of using ~C-c~, since it doesn't play well with visual
 block and Emacs.
