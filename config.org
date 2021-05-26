@@ -212,10 +212,6 @@ all bufers.
 
 * Helm
 
-** TODO [1/2]
-   - [X] Install
-   - [ ] Configure
-
 Fuzzy finding all the things is really nice, let's set that up.
 
 #+begin_src emacs-lisp :results none
