@@ -219,9 +219,31 @@ all bufers.
 Fuzzy finding all the things is really nice, let's set that up.
 
 #+begin_src emacs-lisp :results none
-(my-package-install 'helm)
-(helm-mode 1)
+  (my-package-install 'helm)
+  (helm-mode 1)
 #+end_src
+
+Bind emacs functions to helm and tab to run actions.
+
+#+begin_src emacs-lisp :results none
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-x b") 'helm-mini)
+
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-z")  'helm-select-action)
+#+end_src
+
+Make helm look a little prettier.
+
+#+begin_src emacs-lisp :results none
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 30)
+  (helm-autoresize-mode 1)
+#+end_src
+
 
 * GIT integration
 
