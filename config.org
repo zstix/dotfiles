@@ -303,14 +303,31 @@ Setup YAML
 
 * IRC settings
 
-  What year is it? I don't know, but I still sometimes use IRC. I'm going to
-  try using ERC to see how it compares to my current client (weechat).
+What year is it? I don't know, but I still sometimes use IRC. I'm going to
+try using ERC to see how it compares to my current client (weechat).
 
-  #+begin_src emacs-lisp :results none
-    (setq erc-nick "zstix")
+#+begin_src emacs-lisp :results none
+  (setq erc-nick "zstix")
 
-    (defun irc-libera-chat () (lambda ()
-				(interactive)
-				(erc :server "irc.libera.chat"
-				     :port "6697")))
-  #+end_src
+  ;; NOTE: this isn't working yet
+  (defun irc-libera-chat () (lambda ()
+                              (interactive)
+                              (erc :server "irc.libera.chat"
+                                   :port "6697")))
+#+end_src
+
+Kill buffers that we no longer need.
+
+#+begin_src emacs-lisp :results none
+  (setq erc-kill-buffer-on-part t)
+  (setq erc-kill-server-buffer-on-quit t)
+#+end_src
+
+Some UI customizations to make it a little easeier to use.
+
+#+begin_src emacs-lisp :results none
+  (setq erc-prompt (lambda () (concat (buffer-name) "> ")))
+
+  (erc-scrolltobottom-mode t)
+  (setq erc-input-line-position -1)
+#+end_src
