@@ -143,6 +143,7 @@ Display line numbers, except in certain major modes.
 				(equal major-mode 'info-mode)
 				(equal major-mode 'help-mode)
 				(equal major-mode 'apropos-mode)
+				(equal major-mode 'erc-mode)
 				(equal major-mode 'dired-mode))
 			       0 1
 			       ))))
@@ -274,10 +275,4 @@ Setup YAML
 				(interactive)
 				(erc :server "irc.libera.chat"
 				     :port "6697")))
-  #+end_src
-  
-  Disable evil and line numbers in ERC sessions
-
-  #+begin_src emacs-lisp :results none
-    (add-hook 'erc-mode-hook (lambda () (linum-mode nil)))
   #+end_src
