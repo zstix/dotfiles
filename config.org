@@ -7,14 +7,15 @@ Emacs configuration using org mode. This is very much a learning process.
 
 ** Helpful commands
 
-| Command     | Description              |
-|-------------+--------------------------|
-| ~C-x C-s~   | save file                |
-| ~C-c C-c~   | toggle checkbox          |
-| ~C-c C-c~   | evaluate code block      |
-| ~C-c C-t~   | toggle todo state        |
-| ~C-h f~     | Help for function        |
-| ~C-c C-, s~ | Insert source code block |
+| Command     | Description               |
+|-------------+---------------------------|
+| ~C-x C-s~   | save file                 |
+| ~C-c C-c~   | toggle checkbox           |
+| ~C-c C-c~   | evaluate code block       |
+| ~C-c C-t~   | toggle todo state         |
+| ~C-h f~     | Help for function         |
+| ~C-c C-, s~ | Insert source code block  |
+| ~M:~        | Evaluate an elisp command |
 
 ** Tips and tricks
    - ~:results none~ will precent a result output
@@ -52,10 +53,22 @@ Use CMD for META on mac.
       mac-option-modifier 'none)
 #+end_src
 
-Default to following symlinks (for my dotfiles).
+Enabling copy / paste outside of Emacs (I'm skeptical if this works).
 
 #+begin_src emacs-lisp :results none
-(setq vc-follow-symlinks t)
+  (setq x-select-enable-clipboard t)
+#+end_src
+
+Disable the bell /why/ is this not the default?!
+
+#+begin_src emacs-lisp :results none
+  (setq ring-bell-function 'ignore)
+#+end_src
+
+"y" / "n" rather than "yes" / "no"
+
+#+begin_src emacs-lisp :results none
+	(defalias 'yes-or-no-p 'y-or-no-p)
 #+end_src
 
 ** Packages
@@ -82,17 +95,22 @@ if needed.
 ** Editor
    
 Tabs are always 2 spaces! Also have TAB autocomplete first, then
-indent as expected.
+indent as expected. This isn't working the way I'd like it to, so I'll
+continue to keep tweaking it.
 
 #+begin_src emacs-lisp :results none
-  (setq tab-width 2)
-  (setq default-tab-width 2)
-  (setq indent-tabs-mode nil)
-  (setq tab-always-indent 'complete)
+	(setq-default tab-width 2)
+	(setq-default standard-indent 2)
+	(setq-default electric-indent-inhibit t)
 
-  (setq c-basic-offset 2)
-  (setq js-indent-level 2)
-  (setq css-indent-level 2)
+  ;; Never mix tabs and spaces. Never use tabs.
+	(setq-default indent-tabs-mode nil)
+
+	(setq backwards-delete-char-untabify-method 'nil)
+
+	(setq c-basic-offset tab-width)
+	(setq js-indent-level tab-width)
+	(setq css-indent-level tab-width)
 #+end_src
 
 ** Shell
@@ -105,21 +123,15 @@ I (currently) prefer to use ZSH whenever I open a shell
 #+end_src
 
 * UI customization
-  
-** TODO [4/7]
-   - [X] hide elements
-   - [X] theme
-   - [X] line numbers
-   - [X] fonts
-   - [ ] highligh current line number
-   - [ ] nicer status line
-   - [ ] fallback fonts
 
+** General
+  
 Disable some of the UI elements that I don't need
 
 #+begin_src emacs-lisp :results none
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (setq inhibit-startup-message t)
 #+end_src
 
 OneDark theme, gotta have a dark mode. Nice.
@@ -129,27 +141,52 @@ OneDark theme, gotta have a dark mode. Nice.
 (load-theme 'atom-one-dark t)
 #+end_src
 
-Display line numbers, except in certain major modes.
+Pretty src code blocks in org mode.
+
+#+begin_src emacs-lisp :results none
+  (setq org-src-fontify-natively t)
+  (custom-set-faces
+    '(org-block ((t (:background "#1e1e2a"))))
+  )
+#+end_src
+
+
+For now, I have something that reminds me of NerdTree. I think there's
+probably a more "emacs way" of handling file stuff that I might explore
+in the future.
+
+#+begin_src emacs-lisp :results none
+(my-package-install 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+#+end_src
+
+Better undo functionality.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'undo-tree)
+  (global-undo-tree-mode 1)
+  (global-set-key (kbd "C-r") 'undo-tree-redo)
+#+end_src
+
+** Line numbers
+   
+I've had a surprisingly difficult time getting line numbers to work the way
+I want them to. Display line numbers, except in certain major modes.
 
 #+begin_src emacs-lisp :results none
   (setq linum-format "%4d")
 
-  (add-hook 'after-change-major-mode-hook
-	    '(lambda ()
-	       (linum-mode (if (or
-				(equal major-mode 'term-mode)
-				(equal major-mode 'shell-mode)
-				(equal major-mode 'eww-mode)
-				(equal major-mode 'info-mode)
-				(equal major-mode 'help-mode)
-				(equal major-mode 'apropos-mode)
-				(equal major-mode 'erc-mode)
-				(equal major-mode 'dired-mode))
-			       0 1
-			       ))))
-  #+end_src
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'display-line-numbers-mode)
+#+end_src
 
-Fonts. Still need to figure out some fallback options.
+Display the column number in the modeline (why is this not the default?).
+
+#+begin_src emacs-lisp :results none
+  (column-number-mode)
+#+end_src
+
+** Fonts
 
 #+begin_src emacs-lisp :results none
   (set-face-attribute 'default nil
@@ -165,13 +202,12 @@ Fonts. Still need to figure out some fallback options.
 			  :weight 'normal))
 #+end_src
 
-For now, I have something that reminds me of NerdTree. I think there's
-probably a more "emacs way" of handling file stuff that I might explore
-in the future.
+* Terminal emulation + shell
+
+Use a non-terrible terminal emulator.
 
 #+begin_src emacs-lisp :results none
-(my-package-install 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+  (my-package-install 'vterm)
 #+end_src
 
 * VIM emulation
@@ -184,15 +220,17 @@ in the future.
 Set up evil mode, which is the main way that emacs becomes usable.
 
 #+begin_src emacs-lisp :results none
-(my-package-install 'evil)
-(require 'evil)
-(evil-mode 1)
+  (my-package-install 'evil)
+  (require 'evil)
+  (evil-mode 1)
+
+  (setq-default evil-undo-system 'undo-tree)
 #+end_src
 
 Configure evil mode to operate a little more like vim.
 
 #+begin_src emacs-lisp :results none
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+  (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 #+end_src
 
 Use ~jk~ to exit insert mode escape is too far away and I'm trying to
