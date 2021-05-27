@@ -65,12 +65,6 @@ Disable the bell /why/ is this not the default?!
   (setq ring-bell-function 'ignore)
 #+end_src
 
-"y" / "n" rather than "yes" / "no"
-
-#+begin_src emacs-lisp :results none
-	(defalias 'yes-or-no-p 'y-or-no-p)
-#+end_src
-
 ** Packages
    
 Setup package repositories and add an easier way to install packages,
@@ -295,10 +289,37 @@ Make helm look a little prettier.
  
 * Language-specific configuration
 
-Setup YAML
+** Javascript
+
+Prettier for JS.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'prettier-js)
+  (add-hook 'js-mode-hook 'prettier-js-mode)
+#+end_src
+
+Ability to run JS in org mode blocks.
+
+#+begin_src emacs-lisp :results none
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((js . t)))
+#+end_src
+
+** YAML
 
 #+begin_src emacs-lisp :results none
 (my-package-install 'yaml-mode)
+#+end_src
+
+** Org
+
+Don't ask to evaluate every time.
+
+#+begin_src emacs-lisp :results none
+  (setq org-confirm-babel-evaluate nil
+        org-src-fontify-natively t
+        org-src-tabs-act-natively t)
 #+end_src
 
 * IRC settings
@@ -308,12 +329,14 @@ try using ERC to see how it compares to my current client (weechat).
 
 #+begin_src emacs-lisp :results none
   (setq erc-nick "zstix")
+  (setq erc-port 6697)
 
-  ;; NOTE: this isn't working yet
-  (defun irc-libera-chat () (lambda ()
-                              (interactive)
-                              (erc :server "irc.libera.chat"
-                                   :port "6697")))
+  (defun irc-server-connect (server)
+    (interactive "sWhat server woudld you like to connect to [libera, snoo]? ")
+    (cond
+     ((equal server "libera") (erc-ssl :server "irc.libera.chat"))
+     ((equal server "snoo") (erc-ssl :server "irc.snoonet.org"))
+     (t (message "Server not recognized"))))
 #+end_src
 
 Kill buffers that we no longer need.
@@ -326,8 +349,20 @@ Kill buffers that we no longer need.
 Some UI customizations to make it a little easeier to use.
 
 #+begin_src emacs-lisp :results none
+  (require 'erc-goodies)
+
   (setq erc-prompt (lambda () (concat (buffer-name) "> ")))
 
-  (erc-scrolltobottom-mode t)
+  (erc-scrolltobottom-mode)
   (setq erc-input-line-position -1)
+
+  (setq erc-server-coding-system '(utf-8 . utf-8))
+#+end_src
+
+Filter out things I don't need to see.
+
+#+begin_src emacs-lisp :results none
+  (setq erc-track-exclude-types
+        '("NICK" "JOIN" "PART" "QUIT" "MODE"
+          "324" "329" "332" "333" "353" "477"))
 #+end_src
