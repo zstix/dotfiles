@@ -132,15 +132,21 @@ OneDark theme, gotta have a dark mode. Nice.
 Display line numbers, except in certain major modes.
 
 #+begin_src emacs-lisp :results none
-  (global-linum-mode t)
-  (linum-mode t)
   (setq linum-format "%4d")
 
-  (add-hook 'eshell-mode-hook (lambda () (linum-mode 0)))
-  (add-hook 'eww-mode-hook (lambda () (linum-mode 0)))
-  (add-hook 'info-mode-hook (lambda () (linum-mode 0)))
-  (add-hook 'dired-mode-hook (lambda () (linum-mode 0)))
-#+end_src
+  (add-hook 'after-change-major-mode-hook
+	    '(lambda ()
+	       (linum-mode (if (or
+				(equal major-mode 'term-mode)
+				(equal major-mode 'shell-mode)
+				(equal major-mode 'eww-mode)
+				(equal major-mode 'info-mode)
+				(equal major-mode 'help-mode)
+				(equal major-mode 'apropos-mode)
+				(equal major-mode 'dired-mode))
+			       0 1
+			       ))))
+  #+end_src
 
 Fonts. Still need to figure out some fallback options.
 
@@ -240,7 +246,6 @@ Make helm look a little prettier.
   (helm-autoresize-mode 1)
 #+end_src
 
-
 * GIT integration
 
  Git integration is handled by magit.
@@ -256,3 +261,23 @@ Setup YAML
 #+begin_src emacs-lisp :results none
 (my-package-install 'yaml-mode)
 #+end_src
+
+* IRC settings
+
+  What year is it? I don't know, but I still sometimes use IRC. I'm going to
+  try using ERC to see how it compares to my current client (weechat).
+
+  #+begin_src emacs-lisp :results none
+    (setq erc-nick "zstix")
+
+    (defun irc-libera-chat () (lambda ()
+				(interactive)
+				(erc :server "irc.libera.chat"
+				     :port "6697")))
+  #+end_src
+  
+  Disable evil and line numbers in ERC sessions
+
+  #+begin_src emacs-lisp :results none
+    (add-hook 'erc-mode-hook (lambda () (linum-mode nil)))
+  #+end_src
