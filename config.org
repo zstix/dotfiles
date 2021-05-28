@@ -408,3 +408,10 @@ Filter out things I don't need to see.
         '("NICK" "JOIN" "PART" "QUIT" "MODE"
           "324" "329" "332" "333" "353" "477"))
 #+end_src
+
+Colorize the nicks.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'erc-hl-nicks)
+  (erc-hl-nicks-mode t)
+#+end_src
