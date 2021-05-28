@@ -1,5 +1,6 @@
 #+TITLE: Emacs Configuraiton
 #+AUTHOR: Zack Stickles
+#+STARTUP: overview
 
 Emacs configuration using org mode. This is very much a learning process.
 
@@ -310,6 +311,22 @@ Connect projectile to helm.
  #+begin_src emacs-lisp :results none
 (my-package-install 'magit)
  #+end_src
+
+Display the diff in the gutter.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'git-gutter-fringe)
+  (git-gutter-mode)
+
+  (setq git-gutter:added-sign " ")
+  (setq git-gutter:modified-sign " ")
+  (setq git-gutter:deleted-sign " ")
+
+  ;; from atom-one-dark-colors-alist
+  (set-face-background 'git-gutter:added "#98C379")
+  (set-face-background 'git-gutter:modified "#D19A66")
+  (set-face-background 'git-gutter:deleted "#E06C75")
+#+end_src
  
 * Language-specific configuration
 
