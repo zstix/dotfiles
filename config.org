@@ -348,19 +348,14 @@ Don't ask to evaluate every time.
 
 * IRC settings
 
+** Setup
+
 What year is it? I don't know, but I still sometimes use IRC. I'm going to
 try using ERC to see how it compares to my current client (weechat).
 
 #+begin_src emacs-lisp :results none
   (setq erc-nick "zstix")
   (setq erc-port 6697)
-
-  (defun irc-server-connect (server)
-    (interactive "sWhat server woudld you like to connect to [libera, snoo]? ")
-    (cond
-     ((equal server "libera") (erc-ssl :server "irc.libera.chat"))
-     ((equal server "snoo") (erc-ssl :server "irc.snoonet.org"))
-     (t (message "Server not recognized"))))
 #+end_src
 
 Kill buffers that we no longer need.
@@ -370,6 +365,29 @@ Kill buffers that we no longer need.
   (setq erc-kill-server-buffer-on-quit t)
 #+end_src
 
+** Servers
+
+Easier way to connect to the servers I use.
+
+#+begin_src emacs-lisp :results none
+  (defun irc-server-connect (server)
+    (interactive "sWhat server woudld you like to connect to [libera, snoo]? ")
+    (cond
+     ((equal server "libera") (erc-ssl :server "irc.libera.chat"))
+     ((equal server "snoo") (erc-ssl :server "irc.snoonet.org"))
+     (t (message "Server not recognized"))))
+#+end_src
+
+Automatically join a few channels for each server.
+
+#+begin_src emacs-lisp :results none
+  (setq erc-autojoin-channels-alist
+        '(("libera.chat" "#emacs" "#erc" "security")
+          ("snoonet.org" "portland")))
+#+end_src
+
+** UI
+   
 Some UI customizations to make it a little easeier to use.
 
 #+begin_src emacs-lisp :results none
