@@ -296,6 +296,13 @@ Use projectile to make ti easier to find files in a project.
   (projectile-mode +1)
 #+end_src
 
+Connect projectile to helm.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'helm-projectile)
+  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+#+end_src
+
 * GIT integration
 
  Git integration is handled by magit.
