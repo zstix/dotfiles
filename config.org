@@ -332,6 +332,16 @@ Display the diff in the gutter.
 
 ** Javascript
 
+Better mode for JS and JSX stuff.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'web-mode)
+
+  (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+
+  (setq web-mode-markup-indent-offset 2)
+#+end_src
+
 Prettier for JS.
 
 #+begin_src emacs-lisp :results none
