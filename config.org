@@ -205,12 +205,11 @@ Use a non-terrible terminal emulator.
   (my-package-install 'vterm)
 #+end_src
 
+** TODO fix colors
+
 * VIM emulation
 
-** TODO [2/3]
-   - [X] evil mode
-   - [X] jk to exit insert mode
-   - [ ] leader key
+** Setup
 
 Set up evil mode, which is the main way that emacs becomes usable.
 
@@ -221,6 +220,8 @@ Set up evil mode, which is the main way that emacs becomes usable.
 
   (setq-default evil-undo-system 'undo-tree)
 #+end_src
+
+** Key bindings
 
 Configure evil mode to operate a little more like vim.
 
@@ -238,6 +239,8 @@ block and Emacs.
 (setq-default evil-escape-key-sequence "jk")
 (setq-default evil-escape-delay 0.2)
 #+end_src
+
+** TODO Leader
 
 * Auto completion
   
