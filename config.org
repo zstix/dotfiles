@@ -159,6 +159,7 @@ Better undo functionality.
 #+begin_src emacs-lisp :results none
   (my-package-install 'undo-tree)
   (global-undo-tree-mode 1)
+  (evil-set-undo-system 'undo-tree)
   (global-set-key (kbd "C-r") 'undo-tree-redo)
 #+end_src
 
@@ -249,13 +250,16 @@ all bufers.
 (add-hook 'after-init-hook 'global-company-mode)
 #+end_src
 
-* Helm
+* Fuzzy finding
 
+** Helm
+   
 Fuzzy finding all the things is really nice, let's set that up.
 
 #+begin_src emacs-lisp :results none
   (my-package-install 'helm)
   (helm-mode 1)
+  (setq helm-completion-style 'helm-fuzzy)
 #+end_src
 
 Bind emacs functions to helm and tab to run actions.
@@ -277,6 +281,16 @@ Make helm look a little prettier.
   (setq helm-autoresize-max-height 0)
   (setq helm-autoresize-min-height 30)
   (helm-autoresize-mode 1)
+#+end_src
+
+** Projectile
+
+Use projectile to make ti easier to find files in a project.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'projectile)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1)
 #+end_src
 
 * GIT integration
