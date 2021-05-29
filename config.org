@@ -403,11 +403,11 @@ Kill buffers that we no longer need.
 Easier way to connect to the servers I use.
 
 #+begin_src emacs-lisp :results none
-  (defun irc-server-connect (server)
-    (interactive "sWhat server woudld you like to connect to [libera, snoo]? ")
+  (defun irc-server-connect (server pass)
+    (interactive "sWhat server woudld you like to connect to [libera, snoo]? \nsPassword: ")
     (cond
-     ((equal server "libera") (erc-ssl :server "irc.libera.chat"))
-     ((equal server "snoo") (erc-ssl :server "irc.snoonet.org"))
+     ((equal server "libera") (erc-ssl :server "irc.libera.chat" :password pass))
+     ((equal server "snoo") (erc-ssl :server "irc.snoonet.org" :password pass))
      (t (message "Server not recognized"))))
 #+end_src
 
@@ -415,8 +415,8 @@ Automatically join a few channels for each server.
 
 #+begin_src emacs-lisp :results none
   (setq erc-autojoin-channels-alist
-        '(("libera.chat" "#emacs" "#erc" "security")
-          ("snoonet.org" "portland")))
+        '(("libera.chat" "#emacs" "#erc" "#security")
+          ("snoonet.org" "#portland")))
 #+end_src
 
 ** UI
