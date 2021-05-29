@@ -289,12 +289,18 @@ Make helm look a little prettier.
 
 ** Projectile
 
-Use projectile to make ti easier to find files in a project.
+Use projectile to make it easier to find files in a project.
 
 #+begin_src emacs-lisp :results none
   (my-package-install 'projectile)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1)
+#+end_src
+
+Add the /Silver Searcher/, even though it's not the fastest game in town.
+
+#+begin_src emacs-lisp :results none
+  (my-package-install 'ag)
 #+end_src
 
 Connect projectile to helm.
