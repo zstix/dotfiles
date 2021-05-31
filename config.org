@@ -156,15 +156,6 @@ in the future.
 (global-set-key [f8] 'neotree-toggle)
 #+end_src
 
-Better undo functionality.
-
-#+begin_src emacs-lisp
-  (my-package-install 'undo-tree)
-  (global-undo-tree-mode 1)
-  (evil-set-undo-system 'undo-tree)
-  (global-set-key (kbd "C-r") 'undo-tree-redo)
-#+end_src
-
 ** Line numbers
    
 I've had a surprisingly difficult time getting line numbers to work the way
@@ -187,10 +178,13 @@ Display the column number in the modeline (why is this not the default?).
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-			  :family "SauceCodePro Nerd Font Mono"
-			  :height 110
+			  :family "Hack"
+			  :height 120
 			  :width 'normal
 			  :weight 'normal)
+        
+  (setq-default line-spacing 0.15)
+
   (if (eq system-type 'darwin)
     (set-face-attribute 'default nil
 			  :family "SauceCodePro Nerd Font"
@@ -217,10 +211,18 @@ Set up evil mode, which is the main way that emacs becomes usable.
 
 #+begin_src emacs-lisp
   (my-package-install 'evil)
-  (require 'evil)
-  (evil-mode 1)
+  (my-package-install 'undo-tree)
 
-  (setq-default evil-undo-system 'undo-tree)
+  (require 'evil)
+
+  (evil-mode 1)
+  (global-undo-tree-mode 1)
+#+end_src
+
+Better undo functionality.
+
+#+begin_src emacs-lisp
+  (evil-set-undo-system 'undo-tree)
 #+end_src
 
 ** Key bindings
@@ -229,6 +231,7 @@ Configure evil mode to operate a little more like vim.
 
 #+begin_src emacs-lisp
   (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+  (global-set-key (kbd "C-r") 'undo-tree-redo)
 #+end_src
 
 Use ~jk~ to exit insert mode escape is too far away and I'm trying to
@@ -294,8 +297,8 @@ Use projectile to make it easier to find files in a project.
 
 #+begin_src emacs-lisp
   (my-package-install 'projectile)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1)
+  (require 'projectile)
+  (projectile-mode 1)
 #+end_src
 
 Add the /Silver Searcher/, even though it's not the fastest game in town.
@@ -308,6 +311,7 @@ Connect projectile to helm.
 
 #+begin_src emacs-lisp
   (my-package-install 'helm-projectile)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 #+end_src
 
@@ -449,3 +453,7 @@ Colorize the nicks.
   (my-package-install 'erc-hl-nicks)
   (erc-hl-nicks-mode t)
 #+end_src
+
+* Email
+  
+Why the heck not?

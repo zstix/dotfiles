@@ -2,27 +2,27 @@ background_opacity: 0.95
 
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: Hack
     style: Regular
 
   bold:
-    family: SauceCodePro Nerd Font
+    family: Hack
     style: Bold
 
   italic:
-    family: SauceCodePro Nerd Font
+    family: Hack
     style: Italic
 
-  size: 14.0
+  size: 12.0
 
   offset:
-    y: 1
+    y: 2
 
 mouse:
   hide_when_typing: true
-  url:
-    launcher: open
-    modifiers: Shift
+    # url:
+    # launcher: open
+    # modifiers: Shift
 
 colors:
   primary:
