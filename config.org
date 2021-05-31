@@ -1,11 +1,12 @@
 #+TITLE: Emacs Configuraiton
 #+AUTHOR: Zack Stickles
 #+STARTUP: overview
+#+PROPERTY: header-args:emacs-lisp :results none
 
 Emacs configuration using org mode. This is very much a learning process.
 
 * Cheet sheet
-
+  
 ** Helpful commands
 
 | Command     | Description               |
@@ -29,7 +30,7 @@ Emacs configuration using org mode. This is very much a learning process.
    
 Don't ask to run ~emacs-lisp~ code blocks in this file, just do it.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (defun my-org-confirm-babel-evaluate (lang body)
   (not (string= lang "emacs-lisp")))
 (setq org-confirm-babel-evaluate #'my-org-confirm-babel-evaluate)
@@ -39,7 +40,7 @@ Don't ask to run ~emacs-lisp~ code blocks in this file, just do it.
    
 Disable backups, I've never liked this.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (setq backup-inhibited t
       make-backup-files nil
       auto-save-default nil)
@@ -47,7 +48,7 @@ Disable backups, I've never liked this.
 
 Use CMD for META on mac.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (setq mac-option-key-is-meta nil
       mac-command-key-is-meta t
       mac-command-modifier 'meta
@@ -56,13 +57,13 @@ Use CMD for META on mac.
 
 Enabling copy / paste outside of Emacs (I'm skeptical if this works).
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq x-select-enable-clipboard t)
 #+end_src
 
 Disable the bell /why/ is this not the default?!
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq ring-bell-function 'ignore)
 #+end_src
 
@@ -71,7 +72,7 @@ Disable the bell /why/ is this not the default?!
 Setup package repositories and add an easier way to install packages,
 if needed.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (require 'package)
 
 (add-to-list 'package-archives
@@ -93,7 +94,7 @@ Tabs are always 2 spaces! Also have TAB autocomplete first, then
 indent as expected. This isn't working the way I'd like it to, so I'll
 continue to keep tweaking it.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 	(setq-default tab-width 2)
 	(setq-default standard-indent 2)
 	(setq-default electric-indent-inhibit t)
@@ -112,7 +113,7 @@ continue to keep tweaking it.
 
 I (currently) prefer to use ZSH whenever I open a shell
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 #+end_src
@@ -123,7 +124,7 @@ I (currently) prefer to use ZSH whenever I open a shell
   
 Disable some of the UI elements that I don't need
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (setq inhibit-startup-message t)
@@ -131,14 +132,14 @@ Disable some of the UI elements that I don't need
 
 OneDark theme, gotta have a dark mode. Nice.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'atom-one-dark-theme)
 (load-theme 'atom-one-dark t)
 #+end_src
 
 Pretty src code blocks in org mode.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq org-src-fontify-natively t)
   (custom-set-faces
     '(org-block ((t (:background "#1e1e2a"))))
@@ -150,14 +151,14 @@ For now, I have something that reminds me of NerdTree. I think there's
 probably a more "emacs way" of handling file stuff that I might explore
 in the future.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 #+end_src
 
 Better undo functionality.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'undo-tree)
   (global-undo-tree-mode 1)
   (evil-set-undo-system 'undo-tree)
@@ -169,7 +170,7 @@ Better undo functionality.
 I've had a surprisingly difficult time getting line numbers to work the way
 I want them to. Display line numbers, except in certain major modes.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq linum-format "%4d")
 
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -178,13 +179,13 @@ I want them to. Display line numbers, except in certain major modes.
 
 Display the column number in the modeline (why is this not the default?).
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (column-number-mode)
 #+end_src
 
 ** Fonts
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (set-face-attribute 'default nil
 			  :family "SauceCodePro Nerd Font Mono"
 			  :height 110
@@ -202,7 +203,7 @@ Display the column number in the modeline (why is this not the default?).
 
 Use a non-terrible terminal emulator.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'vterm)
 #+end_src
 
@@ -214,7 +215,7 @@ Use a non-terrible terminal emulator.
 
 Set up evil mode, which is the main way that emacs becomes usable.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'evil)
   (require 'evil)
   (evil-mode 1)
@@ -226,7 +227,7 @@ Set up evil mode, which is the main way that emacs becomes usable.
 
 Configure evil mode to operate a little more like vim.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 #+end_src
 
@@ -234,7 +235,7 @@ Use ~jk~ to exit insert mode escape is too far away and I'm trying to
 break the habit of using ~C-c~, since it doesn't play well with visual
 block and Emacs.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'evil-escape)
 (evil-escape-mode 1)
 (setq-default evil-escape-key-sequence "jk")
@@ -248,7 +249,7 @@ block and Emacs.
 Completion is mostly handled by company, here we ensure it's loaded in
 all bufers.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'company)
 (company-mode 1)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -260,7 +261,7 @@ all bufers.
    
 Fuzzy finding all the things is really nice, let's set that up.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'helm)
   (helm-mode 1)
   (setq helm-completion-style 'helm-fuzzy)
@@ -268,7 +269,7 @@ Fuzzy finding all the things is really nice, let's set that up.
 
 Bind emacs functions to helm and tab to run actions.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -281,7 +282,7 @@ Bind emacs functions to helm and tab to run actions.
 
 Make helm look a little prettier.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq helm-autoresize-max-height 0)
   (setq helm-autoresize-min-height 30)
   (helm-autoresize-mode 1)
@@ -291,7 +292,7 @@ Make helm look a little prettier.
 
 Use projectile to make it easier to find files in a project.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'projectile)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1)
@@ -299,13 +300,13 @@ Use projectile to make it easier to find files in a project.
 
 Add the /Silver Searcher/, even though it's not the fastest game in town.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'ag)
 #+end_src
 
 Connect projectile to helm.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'helm-projectile)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 #+end_src
@@ -314,13 +315,13 @@ Connect projectile to helm.
 
  Git integration is handled by magit.
 
- #+begin_src emacs-lisp :results none
+ #+begin_src emacs-lisp
 (my-package-install 'magit)
  #+end_src
 
 Display the diff in the gutter.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'git-gutter-fringe)
   (git-gutter-mode)
 
@@ -340,7 +341,7 @@ Display the diff in the gutter.
 
 Better mode for JS and JSX stuff.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'web-mode)
 
   (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
@@ -350,14 +351,14 @@ Better mode for JS and JSX stuff.
 
 Prettier for JS.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'prettier-js)
   (add-hook 'js-mode-hook 'prettier-js-mode)
 #+end_src
 
 Ability to run JS in org mode blocks.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((js . t)))
@@ -365,7 +366,7 @@ Ability to run JS in org mode blocks.
 
 ** YAML
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
 (my-package-install 'yaml-mode)
 #+end_src
 
@@ -373,7 +374,7 @@ Ability to run JS in org mode blocks.
 
 Don't ask to evaluate every time.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq org-confirm-babel-evaluate nil
         org-src-fontify-natively t
         org-src-tabs-act-natively t)
@@ -386,14 +387,14 @@ Don't ask to evaluate every time.
 What year is it? I don't know, but I still sometimes use IRC. I'm going to
 try using ERC to see how it compares to my current client (weechat).
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq erc-nick "zstix")
   (setq erc-port 6697)
 #+end_src
 
 Kill buffers that we no longer need.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq erc-kill-buffer-on-part t)
   (setq erc-kill-server-buffer-on-quit t)
 #+end_src
@@ -402,7 +403,7 @@ Kill buffers that we no longer need.
 
 Easier way to connect to the servers I use.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (defun irc-server-connect (server pass)
     (interactive "sWhat server woudld you like to connect to [libera, snoo]? \nsPassword: ")
     (cond
@@ -413,7 +414,7 @@ Easier way to connect to the servers I use.
 
 Automatically join a few channels for each server.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq erc-autojoin-channels-alist
         '(("libera.chat" "#emacs" "#erc" "#security")
           ("snoonet.org" "#portland")))
@@ -423,7 +424,7 @@ Automatically join a few channels for each server.
    
 Some UI customizations to make it a little easeier to use.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (require 'erc-goodies)
 
   (setq erc-prompt (lambda () (concat (buffer-name) "> ")))
@@ -436,7 +437,7 @@ Some UI customizations to make it a little easeier to use.
 
 Filter out things I don't need to see.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (setq erc-track-exclude-types
         '("NICK" "JOIN" "PART" "QUIT" "MODE"
           "324" "329" "332" "333" "353" "477"))
@@ -444,7 +445,7 @@ Filter out things I don't need to see.
 
 Colorize the nicks.
 
-#+begin_src emacs-lisp :results none
+#+begin_src emacs-lisp
   (my-package-install 'erc-hl-nicks)
   (erc-hl-nicks-mode t)
 #+end_src
