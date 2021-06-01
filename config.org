@@ -118,6 +118,14 @@ I (currently) prefer to use ZSH whenever I open a shell
 (exec-path-from-shell-initialize)
 #+end_src
 
+** Spell check
+   Enable spell check for org mode and other prose-based buffers.
+   
+   #+begin_src emacs-lisp
+     (add-hook 'org-mode-hook 'flyspell-mode)
+     (add-hook 'text-mode-hook 'flyspell-mode)
+   #+end_src
+
 * UI customization
 
 ** General
@@ -351,6 +359,7 @@ Prettier for JS.
 #+begin_src emacs-lisp
   (my-package-install 'prettier-js)
   (add-hook 'js-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
 #+end_src
 
 Ability to run JS in org mode blocks.
