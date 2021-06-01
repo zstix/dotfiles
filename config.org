@@ -183,14 +183,7 @@ Display the column number in the modeline (why is this not the default?).
 			  :width 'normal
 			  :weight 'normal)
         
-  (setq-default line-spacing 0.15)
-
-  (if (eq system-type 'darwin)
-    (set-face-attribute 'default nil
-			  :family "SauceCodePro Nerd Font"
-			  :height 130
-			  :width 'normal
-			  :weight 'normal))
+  (setq-default line-spacing 0.2)
 #+end_src
 
 * Terminal emulation + shell
