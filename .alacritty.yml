@@ -13,10 +13,10 @@ font:
     family: Hack
     style: Italic
 
-  size: 13.0
+  size: 14.0
 
   offset:
-    y: 2
+    y: 1
 
 mouse:
   hide_when_typing: true
