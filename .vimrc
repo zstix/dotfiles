@@ -128,6 +128,16 @@ function! ShowDocumentation()
   endif
 endfunction
 
+function! ToggleMarkdownCheckbox()
+  let l:prev = getline('.')
+  if l:prev =~ '\[x\]'
+    let l:next = substitute(l:prev, '\[x\]', '[ ]', '')
+  else
+    let l:next = substitute(l:prev, '\[ \]', '[x]', '')
+  endif
+  call setline('.', l:next)
+endfunction
+
 "=================================================
 " Status line
 "=================================================
@@ -248,6 +258,9 @@ nmap <silent>gd <Plug>(coc-definition)
 nmap <silent>gy <Plug>(coc-type-definition)
 nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
+
+" Toggle markdown checkboxes
+nnoremap <Leader>cc :call ToggleMarkdownCheckbox()<CR>
 
 "=================================================
 " Colors
