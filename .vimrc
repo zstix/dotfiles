@@ -286,10 +286,6 @@ endtry
 set background=dark
 hi Normal guibg=NONE
 
-" Tweaks to dracula
-hi DraculaComment cterm=italic
-hi LineNr cterm=italic
-
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
