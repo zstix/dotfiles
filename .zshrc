@@ -17,11 +17,12 @@ autoload -U colors && colors      # Enable colors
 alias cat="bat"
 export BAT_THEME="base16"
 
-export FZF_DEFAULT_OPTS='
---color fg:14,fg+:3,hl:5,hl+:5,bg:-1,bg+:-1
---color info:6,prompt:6,spinner:1,pointer:3
---preview-window=noborder:60%
-'
+# export FZF_DEFAULT_OPTS='
+# --color fg:14,fg+:3,hl:5,hl+:5,bg:-1,bg+:-1
+# --color info:6,prompt:6,spinner:1,pointer:3
+# --preview-window=noborder:60%
+# '
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --preview-window=noborder:60%'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -79,7 +80,7 @@ function note() {
     sed "s/DATE/$(date +'%Y-%m-%d %H:%M')/" \
     > $FILEPATH
 
-  vim $FILEPATH +6
+  vim $FILEPATH +7
 }
 
 # Easy meeting notes
@@ -93,7 +94,7 @@ function meeting() {
     sed "s/DATE/$(date +'%Y-%m-%d %H:%M')/" \
     > $FILEPATH
 
-  vim $FILEPATH +4
+  vim $FILEPATH +5
 }
 
 #=================================================

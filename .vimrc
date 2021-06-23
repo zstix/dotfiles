@@ -285,7 +285,6 @@ endtry
 set background=dark
 hi Normal guibg=NONE
 
-" TODO: fix this
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
