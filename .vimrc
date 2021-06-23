@@ -145,8 +145,9 @@ endfunction
 set laststatus=2                    " Always show status line
 
 set statusline=                     " Clear out any defaults
-set statusline+=%#Normal#           " Normal colors (brighter)
+set statusline+=%#Comment#          " Comment colors (dimmer)
 set statusline+=[%{mode()}]\        " Current mode
+set statusline+=%#Normal#           " Normal colors (brighter)
 set statusline+=%f\                 " Relative filepath
 set statusline+=%#Comment#          " Comment colors (dimmer)
 set statusline+=%{StatuslineGit()}  " Git branch
