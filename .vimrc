@@ -166,7 +166,7 @@ call plug#begin('~/.vim/plugged')
 
 " Application
 Plug 'airblade/vim-gitgutter'
-Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
@@ -275,7 +275,7 @@ endif
 
 " Set the colorscheme (with a better fallback)
 try
-  colorscheme onedark
+  colorscheme dracula
 catch
   echo "Missing colorscheme!"
   colorscheme desert
@@ -285,6 +285,7 @@ endtry
 set background=dark
 hi Normal guibg=NONE
 
+" TODO: fix this
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
