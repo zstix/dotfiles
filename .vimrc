@@ -274,6 +274,10 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+" Fix for italics in tmux
+set t_ZH=[3m
+set t_ZR=[3m
+
 " Set the colorscheme (with a better fallback)
 try
   colorscheme dracula
@@ -285,11 +289,6 @@ endtry
 " Set the background to dark (for colorscheme) and transparent
 set background=dark
 hi Normal guibg=NONE
-
-" Dracula tweaks
-hi link xmlAttrib DraculaGreen
-hi link jsFuncArgs DraculaOrange
-hi! link Type DraculaCyan
 
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
