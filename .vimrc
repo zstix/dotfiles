@@ -286,6 +286,11 @@ endtry
 set background=dark
 hi Normal guibg=NONE
 
+" Dracula tweaks
+hi link xmlAttrib DraculaGreen
+hi link jsFuncArgs DraculaOrange
+hi! link Type DraculaCyan
+
 " Set fzf colors to match the current colorscheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
