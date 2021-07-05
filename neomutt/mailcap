@@ -1,0 +1,2 @@
+# Set w3m as the HTML viewer (pls, don't use HTML email)
+text/html; w3m -I %{charset} -T text/html; copiousoutput;

@@ -1,0 +1,54 @@
+### Load Accounts Information ###
+
+source ./accounts/secrets
+source ./accounts/account-01 # zstickles@gmail.com
+# source ./accounts/account-02 # zstickles@newrelic.com
+# source ./accounts/account-03 # zstickles@pm.me
+
+### General Settings ###
+
+set editor                = "vim"
+set imap_keepalive        = 300
+set imap_passive          = no
+set imap_check_subscribed = yes
+set imap_idle             = yes
+set mail_check            = 60
+set sort                  = threads
+set sort_aux              = reverse-last-date-received
+set reverse_name          = yes
+set reverse_realname      = yes
+set delete                = yes
+set edit_headers          = yes
+
+### Mail Capabilities ###
+
+set mailcap_path          = ./mailcap
+
+auto_view text/html
+alternative_order text/plain text/html
+
+### SSL / Certs ###
+
+set ssl_force_tls         = yes
+set ssl_starttls          = yes
+set ssl_use_sslv2         = no
+set ssl_use_sslv3         = no
+set ssl_use_tlsv1         = no
+set ssl_use_tlsv1_1       = no
+set ssl_use_tlsv1_2       = no
+set ssl_use_tlsv1_3       = yes
+set ssl_verify_dates      = yes
+set ssl_verify_host       = yes
+unset ssl_usesystemcerts
+
+### Keybindings ###
+
+bind index "G" imap-fetch-mail
+
+bind pager j next-line
+bind pager k previous-line
+bind pager g top
+bind pager G bottom
+
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page

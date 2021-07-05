@@ -1,0 +1,25 @@
+# vim:ft=muttrc
+
+set my_email_01   = "zstickles@gmail.com"
+
+### Recieve ###
+
+set imap_user     = $my_email_01
+set imap_pass     = $my_pass_01
+
+set folder        = "imaps://$my_email_01@imap.gmail.com:993"
+set spoolfile     = "+INBOX"
+set postponed     = "+[Gmail]/Drafts"
+set record        = "+[Gmail]/Sent"
+set trash         = "+[Gmail]/Trash"
+
+### Send ###
+
+set smtp_url      = "smtp://$my_email_01@smtp.gmail.com:587"
+set from          = $my_email_01
+set realname      = "Zack Stickles"
+set use_from      = yes
+set envelope_from = yes
+set hostname      = "gmail.com"
+
+account-hook $folder "set imap_user=$my_email_01"
