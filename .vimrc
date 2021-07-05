@@ -93,6 +93,12 @@ autocmd FileType gitcommit setlocal spell nonumber
 autocmd FileType fugitive setlocal spell nonumber
 autocmd FileType markdown setlocal spell nonumber
 autocmd FileType text setlocal spell nonumber
+autocmd FileType mail setlocal spell nonumber noautoindent
+
+" Ensure we're using the "mail" filetype in neomutt
+augroup filetypedetect
+  autocmd BufRead,BufNewFile *mutt-* set filetype mail
+augroup end
 
 " Markdown improvements for notes
 autocmd FileType markdown syntax match Comment /\%^---\_.\{-}---$/

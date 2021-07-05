@@ -1,2 +1,8 @@
-# Set w3m as the HTML viewer (pls, don't use HTML email)
+### HTML ###
+
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/plain; vim %s
+
+### Images ###
+image/png; /usr/bin/feh %s
+image/jpeg; /usr/bin/feh %s

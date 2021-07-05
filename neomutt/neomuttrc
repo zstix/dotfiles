@@ -1,9 +1,13 @@
-### Load Accounts Information ###
+### Accounts ###
 
 source ./accounts/secrets
-source ./accounts/account-01 # zstickles@gmail.com
+source ./accounts/account-01 # zstickles@gmail.com (default)
 # source ./accounts/account-02 # zstickles@newrelic.com
 # source ./accounts/account-03 # zstickles@pm.me
+
+folder-hook "account-01" "source ~/.config/neomutt/accounts/account-01"
+folder-hook "account-02" "source ~/.config/neomutt/accounts/account-02"
+# folder-hook "account-03" "source ~/.config/neomutt/accounts/account-03"
 
 ### General Settings ###
 
@@ -19,10 +23,13 @@ set reverse_name          = yes
 set reverse_realname      = yes
 set delete                = yes
 set edit_headers          = yes
+set pager_stop            = yes
+set pager_index_lines     = 5
+set collapse_all          = yes
 
 ### Mail Capabilities ###
 
-set mailcap_path          = ./mailcap
+set mailcap_path          = ~/.config/neomutt/mailcap
 
 auto_view text/html
 alternative_order text/plain text/html
@@ -31,15 +38,18 @@ alternative_order text/plain text/html
 
 set ssl_force_tls         = yes
 set ssl_starttls          = yes
-set ssl_use_sslv2         = no
-set ssl_use_sslv3         = no
-set ssl_use_tlsv1         = no
-set ssl_use_tlsv1_1       = no
-set ssl_use_tlsv1_2       = no
-set ssl_use_tlsv1_3       = yes
 set ssl_verify_dates      = yes
 set ssl_verify_host       = yes
-unset ssl_usesystemcerts
+
+### Macros ###
+
+macro index,pager <F5> "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account-01<enter><change-folder>!<enter>"
+macro index,pager <F6> "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account-02<enter><change-folder>!<enter>"
+# macro index,pager <F7> "<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/account-03<enter><change-folder>!<enter>"
+
+macro index c "<imap-fetch-mail><sync-mailbox>"
+
+macro index,pager \CA "<save-message>=[Gmail]/All%20Mail<enter>y<sync-mailbox>"
 
 ### Keybindings ###
 
@@ -50,5 +60,34 @@ bind pager k previous-line
 bind pager g top
 bind pager G bottom
 
+bind index,pager B sidebar-toggle-visible
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
 bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
+
+### Status ###
+
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+### Sidebar ###
+
+set sidebar_visible       = no
+set sidebar_width         = 18
+set sidebar_short_path    = yes
+set sidebar_folder_indent = yes
+set sidebar_divider_char  = "│"
+set sidebar_format        = "%B%* %?N?%N?"
+set mail_check_stats
+
+### Colors ###
+
+source ./dracula.muttrc
+
+color indicator blue default
+color status blue default
+color sidebar_highlight blue default
+color sidebar_divider blue default
