@@ -87,7 +87,7 @@ set mail_check_stats
 
 source ./dracula.muttrc
 
-color indicator blue default
+color indicator magenta default
 color status blue default
 color sidebar_highlight blue default
 color sidebar_divider blue default
