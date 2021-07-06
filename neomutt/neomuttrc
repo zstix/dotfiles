@@ -25,7 +25,7 @@ set delete                = yes
 set edit_headers          = yes
 set pager_stop            = yes
 set pager_index_lines     = 10
-set collapse_all          = yes
+set collapse_all          = no
 
 ### Mail Capabilities ###
 
