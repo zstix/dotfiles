@@ -4,23 +4,27 @@ set my_email_02   = "zstickles@newrelic.com"
 
 ### Recieve ###
 
-set imap_user     = $my_email_02
-set imap_pass     = $my_pass_02
+set imap_user           = $my_email_02
+set imap_pass           = $my_pass_02
 
-set folder        = "imaps://$my_email_02@imap.gmail.com:993"
-set spoolfile     = "+INBOX"
-set postponed     = "+[Gmail]/Drafts"
-set record        = "+[Gmail]/Sent"
-set trash         = "+[Gmail]/Trash"
+set folder              = "imaps://$my_email_02@imap.gmail.com:993"
+set spoolfile           = "+INBOX"
+set postponed           = "+[Gmail]/Drafts"
+set record              = "+[Gmail]/Sent\ Mail"
+set trash               = "+[Gmail]/Trash"
 
 ### Send ###
 
-set smtp_url      = "smtps://zstickles@newrelic.ext@smtp.gmail.com:587"
-set from          = $my_email_02
-set realname      = "Zack Stickles"
-set use_from      = yes
-set envelope_from = yes
-set hostname      = "gmail.com"
-set signature     = "~/.config/neomutt/accounts/signature-02"
+set from                = $my_email_02
+set smtp_pass           = $my_pass_02
+set smtp_url            = "smtps://zstickles@newrelic.ext@smtp.gmail.com:465/"
+set realname            = "Zack Stickles"
+set use_from            = yes
+set envelope_from       = yes
+set hostname            = "gmail.com"
+set signature           = "~/.config/neomutt/accounts/signature-02"
+set smtp_authenticators = "plain"
+
+mailboxes =INBOX =[Gmail]/Drafts =[Gmail]/Spam
 
 account-hook $folder "set imap_user=$my_email_02"
