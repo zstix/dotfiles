@@ -15,11 +15,12 @@ set trash         = "+[Gmail]/Trash"
 
 ### Send ###
 
-set smtp_url      = "smtp://$my_email_01@smtp.gmail.com:587"
+set smtp_url      = "smtps://$my_email_01@smtp.gmail.com:587"
 set from          = $my_email_01
 set realname      = "Zack Stickles"
 set use_from      = yes
 set envelope_from = yes
 set hostname      = "gmail.com"
+set signature     = "~/.config/neomutt/accounts/signature-01"
 
 account-hook $folder "set imap_user=$my_email_01"

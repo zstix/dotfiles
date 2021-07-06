@@ -21,5 +21,6 @@ set realname      = "Zack Stickles"
 set use_from      = yes
 set envelope_from = yes
 set hostname      = "gmail.com"
+set signature     = "~/.config/neomutt/accounts/signature-02"
 
 account-hook $folder "set imap_user=$my_email_02"

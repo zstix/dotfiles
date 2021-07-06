@@ -13,7 +13,9 @@ folder-hook "account-02" "source ~/.config/neomutt/accounts/account-02"
 
 set editor                = "vim"
 set imap_keepalive        = 300
-set imap_passive          = no
+set imap_passive          = yes
+set imap_idle             = yes
+set imap_keepalive        = 300
 set imap_check_subscribed = yes
 set imap_idle             = yes
 set mail_check            = 60
@@ -26,6 +28,10 @@ set edit_headers          = yes
 set pager_stop            = yes
 set pager_index_lines     = 10
 set collapse_all          = no
+set smtp_authenticators   = "plain"
+
+set header_cache          = "~/.cache/neomutt/headers"
+set message_cachedir      = "~/.cache/neomutt/bodies"
 
 ### Mail Capabilities ###
 
@@ -33,13 +39,6 @@ set mailcap_path          = ~/.config/neomutt/mailcap
 
 auto_view text/html
 alternative_order text/plain text/html
-
-### SSL / Certs ###
-
-set ssl_force_tls         = yes
-set ssl_starttls          = yes
-set ssl_verify_dates      = yes
-set ssl_verify_host       = yes
 
 ### Macros ###
 
