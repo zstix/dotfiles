@@ -28,4 +28,7 @@ set smtp_authenticators = "plain"
 
 mailboxes =INBOX =[Gmail]/Drafts =[Gmail]/Spam
 
+named-mailboxes "Personal" =INBOX
+unsidebar_whitelist [Gmail]/Important [Gmail]/Starred [Gmail]/offers
+
 account-hook $folder "set imap_user=$my_email_01"

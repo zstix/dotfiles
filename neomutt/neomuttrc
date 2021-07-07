@@ -37,7 +37,6 @@ set message_cachedir      = "~/.cache/neomutt/bodies"
 set mailcap_path          = ~/.config/neomutt/mailcap
 
 auto_view text/html
-alternative_order text/plain text/html
 
 ### Macros ###
 
@@ -61,7 +60,7 @@ bind pager G bottom
 bind index,pager B sidebar-toggle-visible
 bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
+bind index,pager \Co sidebar-open
 
 bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
@@ -73,12 +72,12 @@ set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)
 
 ### Sidebar ###
 
-set sidebar_visible       = no
+set sidebar_visible       = yes
 set sidebar_width         = 18
 set sidebar_short_path    = yes
 set sidebar_folder_indent = yes
 set sidebar_divider_char  = "│"
-set sidebar_format        = "%B%* %?N?%N?"
+set sidebar_format        = "%D%* %?N?%N?"
 set mail_check_stats
 
 ### Colors ###
