@@ -48,7 +48,7 @@ set cmdheight=1                     " Height of the command bar
 set showcmd                         " Shows (partial) command entry
 set noshowmode                      " Hides the mode (represented in the status line
 
-set number                          " Show line numbers
+set nonumber                        " Hide line numbers by default
 set numberwidth=5                   " Set the gutter width to a fixed size
 set signcolumn=yes                  " Show the sign column for errors / git information
 
